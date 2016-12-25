@@ -1,0 +1,420 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Plagiarism Checker | Viper - Free Plagiarism Checker and Scanner Software</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="http://feeds.feedburner.com/ViperScanner" rel="alternate" type="application/rss+xml" title="ScanMyEssay RSS. News &amp; Updates"/>
+        <link href="http://www.scanmyessay.com/css/main.css" rel="stylesheet" type="text/css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+        <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js" type="text/javascript"></script>
+        <link rel="shortcut icon" href="http://www.scanmyessay.com/favicon.ico"/>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#exp-content").hide();
+                $("#s1").click(function () {
+                    $("#exp-content").fadeIn("slow"); //fadeIn
+                    $("#s1").hide();
+                });
+                $("#h1").click(function () {
+                    $("#exp-content").hide("slow");
+                    $("#s1").show();
+                });
+            });
+            
+        </script>
+
+        <style type="text/css">
+        	
+        	#plg-notes {
+        		margin: 15px 0;
+        	}
+        .no-underline {
+        	text-decoration:none;
+        }
+        .matched-text 
+        {
+        	text-decoration:none;
+        	background-color: #fff86a /*#febbbb*/; 	
+        }
+        #document-text a {
+        	color: #000;
+        }
+        #document-text a:hover {
+        	color: #000;
+        }        
+        .divcenter {
+        	margin: 5px 0;
+        	padding-left: 1px;
+        }
+        .coner-radius 
+        {
+        	-moz-border-radius:3px;
+        	-webkit-border-radius:3px;
+        }
+        #h1 {
+        	display: block;
+        	text-align: right;
+        }
+        
+        #main 
+        {
+        	padding: 5px 5px 20px 5px;       	
+        }
+        #menu ul li h2 
+        {
+           	margin: 5px 5px;
+           	color: #ccc;
+        }
+          
+        	.main-container-top{
+        	
+        		border: 1px solid #fcefa1; /*need removing this*/
+        		background: #fbf9ee;
+        		width: auto;
+        		height: auto;
+        		margin-right: 0;
+        		margin-top: 40px;
+        		float: none;
+        	}
+            .main-container-mid {
+        	    border: 1px solid #aaa; /*need removing this*/
+            	width: auto;
+            	height:auto;
+            	margin: 5px 0;
+            }
+            .main-container-bottom {
+            	border: 1px solid #aaa; /*need removing this*/
+            	width: auto;
+            	height:auto;
+            	margin: 2px 0;	
+            }
+            
+        	.ie-h1-fix {
+        		margin-top: 0px;
+        		padding-bottom: 3px;
+        	}
+        	
+        	.red-text {
+        		color: #c40028;
+        	}
+        	
+        	#rounded-corner
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 9px;
+	margin: 1px;
+	text-align: left;
+	border-collapse: collapse;
+	
+}
+
+#rounded-corner tbody 
+{
+	width: inherit;
+	height: 300px;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+#rounded-corner thead th.rounded-location
+{
+	/* background: #ccc;  #b9c9fe;*/
+	-moz-border-radius-topleft: 3px;
+	-webkit-border-top-left-radius: 3px;
+    width: 40%;
+   /* background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(247,247,247,1)), color-stop(50%,rgba(132,132,132,1)), color-stop(50%,rgba(132,132,132,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+  /* background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(52%,rgba(209,209,209,1)), color-stop(100%,rgba(242,242,242,1))); /* Chrome,Safari4+ */
+}
+#rounded-corner thead th.rounded-doc-title
+{
+    width: 30%;
+}
+#rounded-corner thead th.rounded-plg-wrd-count
+{
+}
+#rounded-corner thead th.rounded-mst-plg-pecnt
+{
+}
+#rounded-corner thead th.rounded-unq-wrds-mtch
+{
+}
+#rounded-corner thead th.rounded-unq-mtch-pecnt
+{
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(52%,rgba(209,209,209,1)), color-stop(100%,rgba(242,242,242,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+	/*background: #ccc;*/
+	-moz-border-radius-topright: 3px;
+	-webkit-border-top-right-radius: 3px;
+}
+#rounded-corner th
+{
+	padding: 8px;
+	font-weight: normal;
+	font-size: 13px;
+	color: #555;
+	/*background: #ccc;*/
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(52%,rgba(209,209,209,1)), color-stop(100%,rgba(242,242,242,1))); /* Chrome,Safari4+ */
+}
+#rounded-corner td
+{
+	padding: 8px;
+	background: #f9f9f9;
+	border-top: 1px solid #fff;
+	color: #555;
+	height: auto;
+}
+
+#rounded-corner tfoot td.rounded-foot-left
+{
+	/*background: #ccc;*/
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(242,242,242,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(226,226,226,1))); /* Chrome,Safari4+ */
+	-moz-border-radius-bottomleft: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+}
+#rounded-corner tfoot td.rounded-foot-right
+{
+	background: #ccc;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(242,242,242,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(226,226,226,1))); /* Chrome,Safari4+ */
+	-moz-border-radius-bottomright: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+}
+#rounded-corner tbody tr:hover td
+{
+	background: #dadada;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(241,241,241,1)), color-stop(51%,rgba(225,225,225,1)), color-stop(100%,rgba(246,246,246,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(235,241,246,1)), color-stop(50%,rgba(171,211,238,1)), color-stop(51%,rgba(137,195,235,1)), color-stop(100%,rgba(213,235,251,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(244,250,249,1)), color-stop(51%,rgba(231,245,243,1)), color-stop(100%,rgba(248,252,251,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(234,255,229,1)), color-stop(51%,rgba(209,255,199,1)), color-stop(100%,rgba(240,255,237,1))); /* Chrome,Safari4+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(255,238,229,1)), color-stop(51%,rgba(255,219,199,1)), color-stop(100%,rgba(255,243,237,1))); /* Chrome,Safari4+ */
+}
+        </style>
+       
+    </head>
+    <body>
+        <div id="wrap">
+            
+            <div id="top">
+                <div id="top-left-tr">
+                    <a href="http://www.scanmyessay.com" title="ScanMyEssay">
+                        <span>Plagiarism Checker</span>
+                    </a> 
+                </div>
+
+                <div id="top-tr">
+                    <a href="http://www.scanmyessay.com/feedback/index.php" title="Contact us">Contact us</a>
+                    | 
+                    <a href="http://www.scanmyessay.com/universities.php">Universities</a>
+                    |
+                    <a href="http://www.scanmyessay.com/viper-background.php">History</a>
+                    |
+                    <a href="http://www.scanmyessay.com/testimonies.php">Testimonies</a>
+                    |
+                    <a href="http://www.scanmyessay.com/press/index.php" title="Viper Press">Press</a>
+                    |
+                    <a href="http://www.scanmyessay.com/about-us.php" title="About us">About us</a>
+                    |
+                    <a href="http://www.scanmyessay.com/sitemap.php" title="Sitemap">Sitemap</a>
+                    |
+                    <a href="http://www.scanmyessay.com/help/index.php" title="Help">Help</a>
+                    |
+                    <a href="http://www.ukessays.com/essay-help.php" title="Essay help" target="_blank">Essay help</a>
+                    |
+                    <a href="http://www.scanmyessay.com/rss/index.php" title="RSS">RSS</a>
+                    |
+                    <a href="http://www.scanmyessay.com/login/index.php" title="Log in">Log in</a>
+                </div>    
+            </div>
+               
+            <div id="menu">
+                <ul>
+                    <li>
+                        <h2>Plagiarism Report For 'chapter-7.docx'</h2>
+                    </li>
+                </ul> 
+            </div>
+
+            <div id="main">
+                <div class="main-container-top coner-radius">
+                    <h1 class="red-text ie-h1-fix">
+                        How does Viper work.....?
+                    </h1>
+                    <a id="s1" class="no-underline" href="#">[+] Read more..</a>
+					<div id="exp-content">
+                        Viper scans your work against over 10 billion web pages and work previously 
+                        submitted to our firm. Once the scan is completed, the report delivers content 
+                        that may match these other sources, including links to the sites that contain 
+                        the same content.
+                        <br />
+                        <br />
+                        <b class="red-text">What Do the Results Mean?</b><br />
+                        If the report sends back positive matches to content found elsewhere, there is no need to panic and assume you have plagiarised your work. Instead, review the report carefully and consider the following:
+                       
+                        <ul>
+                        <li>
+                        Is the material an entire quote, a sentence, or a fragment of 4-5 words often found together? Viper will show a match where there is a string of five or more 
+                        words that are the same as your work. Even if this is not actually plagiarism, it is important that Viper does not ignore these fragments as they draw your 
+                        attention to any sentences where the writer has &#39;rephrased&#39; parts of the 
+                        original material without referencing the source.
+                        </li> 
+                            
+                        <li>If it was intended to be a quote that you were going to attribute to the source, 
+                            did you remember to properly reference it? Sometimes, Viper will identify 
+                            matching material that is available on websites, but the reference might have 
+                            been found within another source. Just because the work has content that matches 
+                            a particular website does not mean that every possible source where it appears 
+                            has to be referenced. Just make sure that at least one reference covers that 
+                        content.
+						</li>
+                        <li>Did you actually use a footnote and it was just simply not picked up by Viper? 
+                            This review is just a means of double-checking that all references have been 
+                            included.
+						</li>
+                        <li>Could Viper have just picked up a phrase that you used more than once in your 
+                            document? This may be a way to ensure that your writing is tight rather than 
+                            repetitive or relies on overly used phrases.
+						</li>    
+                        <li>Did you use too many direct quotes? Viper checks for direct quotes and delivers 
+                            an overall percentage of words it views as direct quotes. Clearly, this should 
+                            not be too high as work that relies too heavily on other material is not 
+                            &#39;original&#39;.
+						</li>
+                        </ul>
+                            <b class="red-text">A Guide on Viper Results</b>
+                            <br/>This guide explains how Viper can identify matching content when it scans your work:
+                            <br/>
+                            <br/><b class="red-text">Overall plagiarism rating 6% or less : </b>
+                            <br/>The results are that it is highly unlikely that this document contains plagiarised material. A careful check will only be necessary if this is a lengthy document. For example, a 6% result within a 15,000 word essay would be of concern because it could mean that direct quotes are too lengthy or there are too many places where a reference was not listed.<br/>
+                            <br/><b class="red-text">Overall plagiarism rating 6% - 12% : </b>
+                            <br/>The results are that there is a low risk that the document contains any plagiarised material. Most of the matching content will probably be fragments. Review your report for any sections that may not have been referenced properly.<br/>
+                            <br/><b class="red-text">Overall plagiarism rating 13% - 20% : </b>
+                            <br/>The results are that there is a medium risk that the document contains any plagiarised material. There may be sections that match websites so it is important to check that proper credit was attributed to the other sources. The scan may not have detected quotation marks or footnotes that were used. For example, if an opening quotation mark was included but there was not a closing quotation mark, then this could explain the higher result. <br/>
+                            <br/><b class="red-text">Overall plagiarism rating 21%+ : </b>
+                            <br/>The results are that there is a high risk that the document contains plagiarised material. If the overall rating is this high, you need to check your report very carefully. It may be that there are a lot of matching fragments and the software has not identified all direct quotes , but it is critical that you go through the entire document and address every phrase or fragment that the scan has flagged to reduce this percentage.<br/>
+                            <a id="h1" class="no-underline" href="#">[-] hide</a>
+                        
+                    </div>
+                </div>
+                <div class="main-container-mid coner-radius">
+                    <table id="rounded-corner" summary="URL found to be copied">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="rounded-location">Location</th>
+                                <th scope="col" class="rounded-doc-title">Title</th>
+                                <th scope="col" class="rounded-plg-wrd-count">Words Matched</th>
+                                <th scope="col" class="rounded-mst-plg-pecnt">Match (%)</th>
+                                <th scope="col" class="rounded-unq-wrds-mtch">Unique Words Matched</th>
+                                <th scope="col" class="rounded-unq-mtch-pecnt">Unique Match (%)</th>
+                            </tr>
+                        </thead>    
+                        <tfoot>
+                            <tr>
+                                <td colspan="5" class="rounded-foot-left"><em>Documents found to be plagiarised</em></td>
+                                <td class="rounded-foot-right">&nbsp;</td>
+                            </tr>
+                        </tfoot>
+                        <tbody id="ajaxtable">
+                            <tr><td><a href=0 target="_blank">0</a></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <div id="plg-notes" class="divcenter red-text">
+                       <b> Matching Content: </b> <b style="color: green"> No Plagiarised Text Found</b>
+                    </div> 
+                <div class="main-container-bottom coner-radius">
+                    <div id="document-text" class="divcenter">
+                        <h2>Master Document Text</h2>
+                        <!--<a href="" class="matched-text"> xyz </a> -->
+                        <p>7. IMPLEMENTATION7.1 Implementation plan Now the developer has finish designing part of the application so next stage is implementation. Implementation is one of the important and biggest part of the system developed life cycle and it involves code the system using programming language (android with SQLite) and use the technology to implement the system and transfer the design into actual working system, which takes lot of effort and time.7.1.1 Tools Used for ImplementationNOCase tool/development tool  other Purpose 1Microsoft Visio 2013To draw all the UML diagrams, activity, sequence, use case.2Microsoft Project 2013To draw Gantt chart 3Adtbundle windows To implement the functionality 4Microsoft Word 2013To document the report.5Microsoft PowerPoint 2013To prepare for presentation 7Microsoft visual studio To develop website 8Microsoft SQL server To develop database Table 29:Case tool in table7.1.2 Implementation approachTo accomplish this task developer assigned a priority to each and every module. The system which is of higher priority should be developed first7.1.2.1 Approach description Module Priority  Approach User module 1First developer need to start the registration  functionality :so that user can be authenticate 2After registration ,developer need to make login module 3After making this two main module developer need to make all functionality related to user User module (web base) 1First developer need to start the registration  functionality :so that user can be authenticate 2After making this two main module developer need to make all functionality related to user  </Table 30:Approach description7.1.3 Pseudo codeStep 1: user must register before login in the application   Pseudo code for registration</:Functionally Pseudo code Registration Step 1:STARTStep2:Get detail from the userStep 3:if check validation of data             input by the user is valid Step 3.1:pass data to the server Step 3.2:server insert the data in      table Step 3.3: message register successfully Step4:else Step 4.1:message register unsuccessful Table 31:   Pseudo code for registrationFunctionally Pseudo code loginStep -1: START Step- 2: Get Input details from user Step- 3: Check details  in valid format  Step-4:Pass data to the server Step-5: Server receives the data Step-6 IF  details in data is valid THEN Step-6.1:Redirect to my account page  Step 7: END IF Step-10 END  Table 32: Pseudo </code for loginObjectiveLogin is based on authentication details which are provided, for operators after their registration administrator can mail emailid /password. Description:-To give access those who are authenticate in the system Functionally Pseudo code Contact backupStep -1: START Step- 2: call the web services Step- 3: get username id , contact name , phone number providing getstring Step-5: if phonenumber is greater then zero Step-6.1:while will take first name and phone number   Step 7: then store to the grid view Table 33:   Pseudo code for contacts backupObjective :-To access the data from the phone and send to the website where the data will store according to the user Description :-When the user wants contact backup it will take all the contacts and store to the website with the help of web services. 7.2 Problems (Hardest Task) <Hardest rask 1:- Getting GPS Location:-Figure 22:Hardest rask 1: Getting GPS LocationUsing Location overlay the developer can fetch the location from GPS but still the problem lies that this method takes 5-10 seconds to get GPS location so the location update time should be greater than this 5-10 secondsHardest rask2:- backup contacts 7.3Technical Quality </7.4.1 Memory Utilization for utilizing less memory the developer has used String-buffer as it utilizes the memory depending on the string size, so that efficiency of program can be increased  Figure 23:Technical Quality7.3.1 User-InterfaceAll design principles are followed in the implementation of the system.  Visibility:  Visibility is achieved by placing the controls in highly visible location, thus developer kept the check on visibility of content in every page. Feedback- It is the provision of information to a user about the result of an action  Constraints- They are properties of an object that limit the ways in which it can be used Mapping - For mapping in the system, developer has provided various mapping marks such as backup contacts, backup sms.Consistency- Design interfaces to have similar operations and use similar elements for similar tasks, for the sake developer has provided consistent web-pages throughout the application. 7.3.2 Validation of mobile application Validation of login:Validation of login:Validation for username and password to login, if username and password is empty it will show the message after clicking the login buttonIf user type username and password and click login button, if data is not correct it will show message Table 34:: Validation Of Mobile Application7.3.3 Validation of website Validation for username and password to login, if username and password is empty it will show the message after clicking the login buttonWhen user put current password wrong and put other detail and click change password button it will show the message Table 35:3 Validation Of Website7.3.4 User manual (mobile app)There are some few step to use this application Setp1: your mobile internet data should be on Step2: GPS should be on Step3: you need to installed the app on the mobile Step:4Step:4User need to fill the required detail to register User need to fill the required detail to loginStep:5 loading page Step 6: MENUAfter clicking login the screen will in loading My contact view the contact store in mobile It will take backup of all contact, smsMy sms view all the sms store in mobile After clicking on my contact it will show the contactAfter clicking on the my sms it will show all sms After clicking this button it take backup of all sms to websiteAfter clicking this button it will update detail and sent to website After clicking this button it take backup of all contacts to websiteTable 36:4 User manual (mobile app7.3.5 User manual (website)Setp1: login To login in this website you need to register from mobile app Step2: user account  pageView detail of sim, track detail,You can sent request for contact backup, sms backup, update detailYou can view all sms of mobile You can view all contact of mobile You can view and change numberYou can change passwordTable 37:User manual (website)7.3.6 Technical manual <How to used the adtbundle  With the file done downloading, double-click to open it. Extract all the files to a location on your computer. I left it the default location when I extracted. Once the file is finished extracting click on the file. You should now see two folders named eclipse and sdk and an application called SDK Manager. We are going to open up the environment where you will be developing android apps so click on eclipse. You should now see multiple folders and multiple files. Here you want to double click eclipse.exe to open the application.With eclipse open we can now get started building our first app!Emulator android virtual device manager  Select the project->right click on it->go to and select the Run As->go to android application select it -> see emulator test the application .MICROSOFT VISUAL STUDIO 2012Step 1: start page visual studio 2012Step 2: ÿIt will ask for optional features to install, I haveÿselectedÿallStep 3: After clicking Install then aÿwindow will be opened. That will show the acquiring and applying process..!Step 4: Yes, setup completed successfully and click theÿLAUNCH buttonStep 5: After few minutes belowÿwindow will ask you to choose the default environment setting and I have chosen ÿthe general development setting.ÿClick Start Visual Studio button.Step 6:After clinking on visual studio 2012 icon, To start the project click new projectStep7:main page After selecting new project ->select web on left side and write application name and other detail required->click okStep8:main page Run the website for testing This is a property menu where you can the property of interface This is a solution explorer where you can create, manage classes, folder.This is toolbox where user can drag and drop any tool they need.SQL 2008 Step1: Locate the installation files available in the setup folder. Click on setup icon to start up  with the setup wizard of MS SQL Server 2008. Once you select the setup icon, the </w:t></w:r following screen will appear. Click on Installation option from the available options on </w:t></w:r the right panel.</w:t></w:rStep 2: Once the user runs the setup wizard, the wizard will check for the system status and  compatibility. The wizard will run some tests on the system for checking a number of </w:t></w:r> things. The detailed information can be referred from the below mentioned screen. Once </w:t></w:r> the tests are over, a short report will be displayed and the system will ask the user to click </w:t></w:r> on `Ok' button. Please click on the mentioned button to continue will the setup.</w:t></w:r>Step 3: Once the system gets through the recommended tests, the user will get an option to  choose which type of installation the user wants on the machine. Now the user should </w:t></w:r> select `New Server stand-alone installation' option from the right-panel. Once the usr </w:t></w:r> selects the required option, the wizard will redirect the user to some further test page.</w:t></w:r>Step 4: Once the user selects the new stand-alone installation type, it will beredirected to the  below mentioned page. This page will run some further tests on the system to check its </w:t></w:r> compatibility. Once the test results are positive, the user may click on `Ok' button to </w:t></w:r> carry on with the installation process.</w:t></w:r>Step5: After all the tests are done wih positive results, the system may ask the user for entering  the product key. The user has to enter product key for validating itself as the authorised </w:t></w:r owner of the software being used. User may find the product key on the right-bottom </w:t></w:r corner of the back-cover of the CD case.</w:t></w:rStep 6: As the user enters the product key and the wizard validates the user as authorised, the  wizarrd will ask the user to accept the license tems and conditions. Click on `I accept the </w:t></w:r> license terms' and click the `Next' button to continue with the setup.</w:t></w:r>Step 7: The wizard will display the below mentioned screen. Click on `Install' button to continue  with the setup. The wizard will now load essential files that are required through the </w:t></w:r> installation part.</w:t></w:r>Step 8: Once the user selects the features required to install, the below mentioned screen will  appear. Select `Default instance' in-case the user is installing a fresh copy of SQL </w:t></w:r></ Server or the user may also go with `Named instance' in-case the user has already </w:t></w:r></ installed a previous copy of the same version and wants to install a second copy of it.</w:t></w:r></Step 9:  Configure the `Account Name' and `Password' as per the needs. The developer  recommends to keep `Local System' as account name and the user desired password. </w:t></w:r></w Click on `Next' button to contnue.</w:t></w:r></wStep 10: Once account name and account configuration is done, the wizard will ask the user to  add the user. Click on `Add current user' and enter the password. Or the user may also </w:t></w:r></ opt for windows authentication. Once the configuration is done, click on `Next' button.</w:t></w:r></Step 11: After these steps, the setup wizard will now check the configuration settings of the  software being installed. It will check whether the following services can be installed or </w:t></w:r></ not. It will display a short report and ask the user to click on `Next' button.</w:t></w:r></Step 12: The below mentioned screen will appear once all the features will be installed. Please  click on `Next' button to finalize the setup.</w:t></w:r></Step 13: Once the setup is completed, the below mentioned screen will appear. The user may click on `Close' button to complete setup. The user may now open the software by following the steps as Go to Start menu of Windows Programs Microsoft SQL Server 2008 SQL Server Management StudioTable 38:Technical manual
+</p>
+                        
+                        
+                    </div>
+                    
+                </div> 
+            </div>
+
+            <div id="footer">
+                <div id="footermenu">
+                    <div id="col1">
+                        <ul>
+                            <li>
+                                <a title="Plagiarism detection software" href="http://www.scanmyessay.com/plagiarism-detection-software.php">Plagiarism Detection Software</a>
+                            </li>
+                            <li>
+                                <a title=" Plagiarism Test" href="http://www.scanmyessay.com/plagiarism-test.php">Plagiarism Test </a>
+                            </li>
+                            <li>
+                                <a title="Plagiarism Detector" href="http://www.scanmyessay.com/plagiarism-detector.php">Plagiarism Detector</a>
+                            </li>
+                            <li>
+                                <a title="Detect Plagiarism" href="http://www.scanmyessay.com/detect-plagiarism.php">Detect Plagiarism</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="col2">
+                        <ul>
+                            <li>
+                                <a title="Essay Checker" href="http://www.scanmyessay.com/essay-checker.php">Essay Checker</a> 
+                                | <a href="http://www.scanmyessay.com/free-check-for-plagiarism.php">Free Check for Plagiarism</a>
+                            </li>
+                            <li>
+                                <a title="Free lesson plans" href="http://www.scanmyessay.com/lesson-plans.php">Lesson plans</a>
+                            </li>
+                            <li>
+                                <a title="Avoid plagiarism" href="http://www.scanmyessay.com/avoid-plagiarism.php">Avoid Plagiarism</a>
+                            </li>
+                            <li>
+                                <a title="Plagiarism Check" href="http://www.scanmyessay.com/plagiarism-check.php">Plagiarism Check</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="col3">
+                        <ul>
+                            <li>
+                                <a title="Plagiarism prevention software" href="http://www.scanmyessay.com/plagiarism-prevention.php">Plagiarism Prevention</a>
+                            </li>
+                            <li>
+                                <a title="Turnitin" href="http://www.scanmyessay.com/turnitin.php">Turnitin </a> | <a href="http://www.scanmyessay.com/check-for-plagiarism-free.php">Check for Plagiarism Free</a>
+                            </li>
+                            <li>
+                                <a title="Editing services" href="http://www.scanmyessay.com/essay-marking/index.php">Editing Services</a>
+                            </li>
+                            <li>
+                                <a title="Free Scanner Software" href="http://www.essaycoursework.com/coursework-writing.php">Coursework writing</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="footerbottom">
+                    <p>
+                        Copyright © 2012 All Rights Reserved. 
+                        <a href="http://www.scanmyessay.com">Scan My Essay</a> 
+                        - Free Plagiarism Scanner, Checker and Detection Tool.  
+                        Viper and ScanMyEssay.com are trading names of Angel Business Limited, 
+                        a Company registered in England and Wales with Company Registration No: 07344835, 
+                        The Loft, 3 Plumptre Street, The Lace Market, Nottingham NG1 1JL | 
+                        <a href="http://www.scanmyessay.com/viper-keygen-crack.php">Warning - Viper Keygen / Viper Crack</a>
+                    </p>
+                    <p>
+                        Please note that by using ScanMyEssay.com, VIPER and any other  software or resources on the ScanMyEssay Website, you are signifying  your agreement
+                        to our <a href="http://www.scanmyessay.com/terms.php">terms and conditions</a>, and our <a href="http://www.scanmyessay.com/privacy-policy.php">privacy policy</a> | <a href="http://www.scanmyessay.com/sitemap.xml">XML sitemap</a> 
+                        | <a href="http://www.scanmyessay.com/ror.xml">ROR</a> 
+                        | <a href="http://www.scanmyessay.com/urllist.txt">TXT</a>
+                        | <a href="http://www.scanmyessay.com/sitemap.html">HTML</a>
+                        | <a href="http://www.scanmyessay.com/sitemap.php">PHP</a> | <a href="http://cn.scanmyessay.com">剽窃检查</a>
+                        | <a href="http://es.scanmyessay.com">Verificador de plagio gratuito</a> 
+                        | <a href="http://fr.scanmyessay.com/">Détecteur de plagiat gratuit</a> 
+                        | <a href="http://in.scanmyessay.com/">Viper साहित्यिक चोरी जांचने का एक निशुल्क साधन...</a>
+
+                    </p>
+                </div> 
+            </div>
+
+        </div>
+         
+    </body>
+</html>

@@ -1,0 +1,423 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Plagiarism Checker | Viper - Free Plagiarism Checker and Scanner Software</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="http://feeds.feedburner.com/ViperScanner" rel="alternate" type="application/rss+xml" title="ScanMyEssay RSS. News &amp; Updates"/>
+        <link href="http://www.scanmyessay.com/css/main.css" rel="stylesheet" type="text/css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+        <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js" type="text/javascript"></script>
+        <link rel="shortcut icon" href="http://www.scanmyessay.com/favicon.ico"/>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#exp-content").hide();
+                $("#s1").click(function () {
+                    $("#exp-content").fadeIn("slow"); //fadeIn
+                    $("#s1").hide();
+                });
+                $("#h1").click(function () {
+                    $("#exp-content").hide("slow");
+                    $("#s1").show();
+                });
+            });
+            
+        </script>
+
+        <style type="text/css">
+        	
+        	#plg-notes {
+        		margin: 15px 0;
+        	}
+        .no-underline {
+        	text-decoration:none;
+        }
+        .matched-text 
+        {
+        	text-decoration:none;
+        	background-color: #fff86a /*#febbbb*/; 	
+        }
+        #document-text a {
+        	color: #000;
+        }
+        #document-text a:hover {
+        	color: #000;
+        }        
+        .divcenter {
+        	margin: 5px 0;
+        	padding-left: 1px;
+        }
+        .coner-radius 
+        {
+        	-moz-border-radius:3px;
+        	-webkit-border-radius:3px;
+        }
+        #h1 {
+        	display: block;
+        	text-align: right;
+        }
+        
+        #main 
+        {
+        	padding: 5px 5px 20px 5px;       	
+        }
+        #menu ul li h2 
+        {
+           	margin: 5px 5px;
+           	color: #ccc;
+        }
+          
+        	.main-container-top{
+        	
+        		border: 1px solid #fcefa1; /*need removing this*/
+        		background: #fbf9ee;
+        		width: auto;
+        		height: auto;
+        		margin-right: 0;
+        		margin-top: 40px;
+        		float: none;
+        	}
+            .main-container-mid {
+        	    border: 1px solid #aaa; /*need removing this*/
+            	width: auto;
+            	height:auto;
+            	margin: 5px 0;
+            }
+            .main-container-bottom {
+            	border: 1px solid #aaa; /*need removing this*/
+            	width: auto;
+            	height:auto;
+            	margin: 2px 0;	
+            }
+            
+        	.ie-h1-fix {
+        		margin-top: 0px;
+        		padding-bottom: 3px;
+        	}
+        	
+        	.red-text {
+        		color: #c40028;
+        	}
+        	
+        	#rounded-corner
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 9px;
+	margin: 1px;
+	text-align: left;
+	border-collapse: collapse;
+	
+}
+
+#rounded-corner tbody 
+{
+	width: inherit;
+	height: 300px;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+#rounded-corner thead th.rounded-location
+{
+	/* background: #ccc;  #b9c9fe;*/
+	-moz-border-radius-topleft: 3px;
+	-webkit-border-top-left-radius: 3px;
+    width: 40%;
+   /* background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(247,247,247,1)), color-stop(50%,rgba(132,132,132,1)), color-stop(50%,rgba(132,132,132,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+  /* background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(52%,rgba(209,209,209,1)), color-stop(100%,rgba(242,242,242,1))); /* Chrome,Safari4+ */
+}
+#rounded-corner thead th.rounded-doc-title
+{
+    width: 30%;
+}
+#rounded-corner thead th.rounded-plg-wrd-count
+{
+}
+#rounded-corner thead th.rounded-mst-plg-pecnt
+{
+}
+#rounded-corner thead th.rounded-unq-wrds-mtch
+{
+}
+#rounded-corner thead th.rounded-unq-mtch-pecnt
+{
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(52%,rgba(209,209,209,1)), color-stop(100%,rgba(242,242,242,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+	/*background: #ccc;*/
+	-moz-border-radius-topright: 3px;
+	-webkit-border-top-right-radius: 3px;
+}
+#rounded-corner th
+{
+	padding: 8px;
+	font-weight: normal;
+	font-size: 13px;
+	color: #555;
+	/*background: #ccc;*/
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(52%,rgba(209,209,209,1)), color-stop(100%,rgba(242,242,242,1))); /* Chrome,Safari4+ */
+}
+#rounded-corner td
+{
+	padding: 8px;
+	background: #f9f9f9;
+	border-top: 1px solid #fff;
+	color: #555;
+	height: auto;
+}
+
+#rounded-corner tfoot td.rounded-foot-left
+{
+	/*background: #ccc;*/
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(242,242,242,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(226,226,226,1))); /* Chrome,Safari4+ */
+	-moz-border-radius-bottomleft: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+}
+#rounded-corner tfoot td.rounded-foot-right
+{
+	background: #ccc;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(242,242,242,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(226,226,226,1))); /* Chrome,Safari4+ */
+	-moz-border-radius-bottomright: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+}
+#rounded-corner tbody tr:hover td
+{
+	background: #dadada;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(241,241,241,1)), color-stop(51%,rgba(225,225,225,1)), color-stop(100%,rgba(246,246,246,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(235,241,246,1)), color-stop(50%,rgba(171,211,238,1)), color-stop(51%,rgba(137,195,235,1)), color-stop(100%,rgba(213,235,251,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(244,250,249,1)), color-stop(51%,rgba(231,245,243,1)), color-stop(100%,rgba(248,252,251,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(234,255,229,1)), color-stop(51%,rgba(209,255,199,1)), color-stop(100%,rgba(240,255,237,1))); /* Chrome,Safari4+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(255,238,229,1)), color-stop(51%,rgba(255,219,199,1)), color-stop(100%,rgba(255,243,237,1))); /* Chrome,Safari4+ */
+}
+        </style>
+       
+    </head>
+    <body>
+        <div id="wrap">
+            
+            <div id="top">
+                <div id="top-left-tr">
+                    <a href="http://www.scanmyessay.com" title="ScanMyEssay">
+                        <span>Plagiarism Checker</span>
+                    </a> 
+                </div>
+
+                <div id="top-tr">
+                    <a href="http://www.scanmyessay.com/feedback/index.php" title="Contact us">Contact us</a>
+                    | 
+                    <a href="http://www.scanmyessay.com/universities.php">Universities</a>
+                    |
+                    <a href="http://www.scanmyessay.com/viper-background.php">History</a>
+                    |
+                    <a href="http://www.scanmyessay.com/testimonies.php">Testimonies</a>
+                    |
+                    <a href="http://www.scanmyessay.com/press/index.php" title="Viper Press">Press</a>
+                    |
+                    <a href="http://www.scanmyessay.com/about-us.php" title="About us">About us</a>
+                    |
+                    <a href="http://www.scanmyessay.com/sitemap.php" title="Sitemap">Sitemap</a>
+                    |
+                    <a href="http://www.scanmyessay.com/help/index.php" title="Help">Help</a>
+                    |
+                    <a href="http://www.ukessays.com/essay-help.php" title="Essay help" target="_blank">Essay help</a>
+                    |
+                    <a href="http://www.scanmyessay.com/rss/index.php" title="RSS">RSS</a>
+                    |
+                    <a href="http://www.scanmyessay.com/login/index.php" title="Log in">Log in</a>
+                </div>    
+            </div>
+               
+            <div id="menu">
+                <ul>
+                    <li>
+                        <h2>Plagiarism Report For '2.docx'</h2>
+                    </li>
+                </ul> 
+            </div>
+
+            <div id="main">
+                <div class="main-container-top coner-radius">
+                    <h1 class="red-text ie-h1-fix">
+                        How does Viper work.....?
+                    </h1>
+                    <a id="s1" class="no-underline" href="#">[+] Read more..</a>
+					<div id="exp-content">
+                        Viper scans your work against over 10 billion web pages and work previously 
+                        submitted to our firm. Once the scan is completed, the report delivers content 
+                        that may match these other sources, including links to the sites that contain 
+                        the same content.
+                        <br />
+                        <br />
+                        <b class="red-text">What Do the Results Mean?</b><br />
+                        If the report sends back positive matches to content found elsewhere, there is no need to panic and assume you have plagiarised your work. Instead, review the report carefully and consider the following:
+                       
+                        <ul>
+                        <li>
+                        Is the material an entire quote, a sentence, or a fragment of 4-5 words often found together? Viper will show a match where there is a string of five or more 
+                        words that are the same as your work. Even if this is not actually plagiarism, it is important that Viper does not ignore these fragments as they draw your 
+                        attention to any sentences where the writer has &#39;rephrased&#39; parts of the 
+                        original material without referencing the source.
+                        </li> 
+                            
+                        <li>If it was intended to be a quote that you were going to attribute to the source, 
+                            did you remember to properly reference it? Sometimes, Viper will identify 
+                            matching material that is available on websites, but the reference might have 
+                            been found within another source. Just because the work has content that matches 
+                            a particular website does not mean that every possible source where it appears 
+                            has to be referenced. Just make sure that at least one reference covers that 
+                        content.
+						</li>
+                        <li>Did you actually use a footnote and it was just simply not picked up by Viper? 
+                            This review is just a means of double-checking that all references have been 
+                            included.
+						</li>
+                        <li>Could Viper have just picked up a phrase that you used more than once in your 
+                            document? This may be a way to ensure that your writing is tight rather than 
+                            repetitive or relies on overly used phrases.
+						</li>    
+                        <li>Did you use too many direct quotes? Viper checks for direct quotes and delivers 
+                            an overall percentage of words it views as direct quotes. Clearly, this should 
+                            not be too high as work that relies too heavily on other material is not 
+                            &#39;original&#39;.
+						</li>
+                        </ul>
+                            <b class="red-text">A Guide on Viper Results</b>
+                            <br/>This guide explains how Viper can identify matching content when it scans your work:
+                            <br/>
+                            <br/><b class="red-text">Overall plagiarism rating 6% or less : </b>
+                            <br/>The results are that it is highly unlikely that this document contains plagiarised material. A careful check will only be necessary if this is a lengthy document. For example, a 6% result within a 15,000 word essay would be of concern because it could mean that direct quotes are too lengthy or there are too many places where a reference was not listed.<br/>
+                            <br/><b class="red-text">Overall plagiarism rating 6% - 12% : </b>
+                            <br/>The results are that there is a low risk that the document contains any plagiarised material. Most of the matching content will probably be fragments. Review your report for any sections that may not have been referenced properly.<br/>
+                            <br/><b class="red-text">Overall plagiarism rating 13% - 20% : </b>
+                            <br/>The results are that there is a medium risk that the document contains any plagiarised material. There may be sections that match websites so it is important to check that proper credit was attributed to the other sources. The scan may not have detected quotation marks or footnotes that were used. For example, if an opening quotation mark was included but there was not a closing quotation mark, then this could explain the higher result. <br/>
+                            <br/><b class="red-text">Overall plagiarism rating 21%+ : </b>
+                            <br/>The results are that there is a high risk that the document contains plagiarised material. If the overall rating is this high, you need to check your report very carefully. It may be that there are a lot of matching fragments and the software has not identified all direct quotes , but it is critical that you go through the entire document and address every phrase or fragment that the scan has flagged to reduce this percentage.<br/>
+                            <a id="h1" class="no-underline" href="#">[-] hide</a>
+                        
+                    </div>
+                </div>
+                <div class="main-container-mid coner-radius">
+                    <table id="rounded-corner" summary="URL found to be copied">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="rounded-location">Location</th>
+                                <th scope="col" class="rounded-doc-title">Title</th>
+                                <th scope="col" class="rounded-plg-wrd-count">Words Matched</th>
+                                <th scope="col" class="rounded-mst-plg-pecnt">Match (%)</th>
+                                <th scope="col" class="rounded-unq-wrds-mtch">Unique Words Matched</th>
+                                <th scope="col" class="rounded-unq-mtch-pecnt">Unique Match (%)</th>
+                            </tr>
+                        </thead>    
+                        <tfoot>
+                            <tr>
+                                <td colspan="5" class="rounded-foot-left"><em>Documents found to be plagiarised</em></td>
+                                <td class="rounded-foot-right">&nbsp;</td>
+                            </tr>
+                        </tfoot>
+                        <tbody id="ajaxtable">
+                            <tr><td><a href=http://quizlet.com/9399719/project-management-chapter-7-flash-cards/ target="_blank">http://quizlet.com/9399719/project-management-chapter-7-flash-cards/</a></td><td>Project Management - Chapter 7 flashcards | Quizlet</td><td>9</td><td>1</td><td>9</td><td>1</td></tr><tr><td><a href=http://quizlet.com/22043955/chapter-7-project-cost-management-flash-cards/ target="_blank">http://quizlet.com/22043955/chapter-7-project-cost-management-flash-cards/</a></td><td>Chapter 7 Project Cost Management flashcards | Quizlet</td><td>9</td><td>1</td><td>0</td><td><1</td></tr><tr><td><a href=http://gps.about.com/od/glossary/g/GPS.htm target="_blank">http://gps.about.com/od/glossary/g/GPS.htm</a></td><td>GPS Definition - Global Positioning System</td><td>39</td>
+                              <td>1</td><td>39</td>
+                              <td>1</td>
+                            </tr><tr><td><a href=http://quizlet.com/2121483/chapter-7-flash-cards/ target="_blank">http://quizlet.com/2121483/chapter-7-flash-cards/</a></td><td>Chapter 7 flashcards | Quizlet - Simple free learning tools ...</td><td>9</td><td>1</td><td>0</td><td><1</td></tr><tr><td><a href=http://gps.about.com/od/beforeyoubuy/a/howgpsworks.htm target="_blank">http://gps.about.com/od/beforeyoubuy/a/howgpsworks.htm</a></td><td>How GPS Works - GPS Technology Explained - About.com GPS</td><td>39</td><td>
+                            2</td><td>0</td><td><1</td></tr><tr><td><a href=http://quizlet.com/10630980/isys3293-exam-2-flash-cards/ target="_blank">http://quizlet.com/10630980/isys3293-exam-2-flash-cards/</a></td><td>ISYS3293 Exam 2 flashcards | Quizlet - Simple free learning ...</td><td>20</td><td>2</td><td>0</td><td><1</td></tr><tr><td><a href=http://quizlet.com/10902032/621e2-essays-flash-cards/ target="_blank">http://quizlet.com/10902032/621e2-essays-flash-cards/</a></td><td>621e2 essays flashcards | Quizlet - Simple free learning ...</td><td>9</td><td>1</td><td>0</td><td><1</td></tr><tr><td><a href=http://evvworkgroup.org/evv-knowledge-center/cell-phone-gps-2/ target="_blank">http://evvworkgroup.org/evv-knowledge-center/cell-phone-gps-2/</a></td><td>Cell Phone GPS | EVV Standards Workgroup for Home Care</td><td>39</td><td>3</td><td>0</td><td><1</td></tr><tr><td><a href=http://www-kiv.zcu.cz/~pergl/SAI/PMIBOK/project7.htm target="_blank">http://www-kiv.zcu.cz/~pergl/SAI/PMIBOK/project7.htm</a></td><td>Chapter 7 - Project Cost Management - zcu.cz</td><td>8</td><td>1</td><td>0</td><td><1</td></tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <div id="plg-notes" class="divcenter red-text">
+                       <b> Matching Content: 2%</b>
+                    </div> 
+                <div class="main-container-bottom coner-radius">
+                    <div id="document-text" class="divcenter">
+                        <h2>Master Document Text</h2>
+                        <!--<a href="" class="matched-text"> xyz </a> -->
+                        <p> Problem DescriptionThere are many android application in the market which are related to the mobile security in such application there are less<br /> feature and more limitation in the system, now a days most people are using android base smartphones in their daily life the smartphone is such a<br /> small that an keep in the pocket and used anywhere.S.NONAMEDESCRIPTION1Waste of Time and MoneyNow days some thief are start robing an mobile because<br /> it is small product an expensive and easy to rob and most important thing there is no application to protect data and mobile from the thief's when<br /> user knew that smartphone is rob than he/she goes to police station make an FIR they will not guarantee to get the smartphone back this process will<br /> take long time atleast 3-4 month and user can't wait for month and take an new mobile and forget about the smartphone which is robed. Sometime user<br /> forget mobile at home and want a contact from it at that time what he/she will do it will go back to home leave all the work behind in their waste of<br /> time and cost.2Data secure problemSometime user forget the mobile anywhere the thief or unknown person trying to access a personal data from mobile<br /> like bank detail, smartcard information, password which are saved, At that time user can't do anything.3Application security problemSometime the<br /> thief uninstalling an application which can't be secure without an application in such a situation user can't use the functionally of application<br /> BackupPeople format there mobile when mobile responding slow at that time the contact and message, important file will not get back<br /> Communicationwhile there are many software in the mobileTable 8: Problem Description2.1 Nature Of challengeBackup: - It is most challenging<br /> my system, developer have to implement a system which can access data from a mobile and store to the driver and then the user can get the data<br /> Developer have to make weekly backup or monthly backup so user get any time will he forget the mobile at home also. Manage all data Mobile tracking<br /> location: - It is also a challenging in the system, developer have to track the mobile particular area showing a map or area information in<br /> Lock via sms :- To make feature like lock is such a challenging part that it have to lock the smartphone via sms.Concepts: This system will be using<br /> advance concepts like multithreading, background services and handlers, as it will be implemented on mobile, which has very limited processing power<br /> RAM and secondary memory space.Theory: This system is large (many things on single page) for mobile and when the Developer develop the project on<br /> computers then he gets more resources like high processing, RAM, hard disc (Large storage) but in mobile systems he gets limited processing power<br /> RAM and space, so he has to use these resources very efficiently otherwise it results in application crashes, so the system will be using advance<br /> concepts of multithreading, memory garbage collection.Technology:Mobile Technology- Mobile Communication Concepts and Technologies (Wi-Fi/GPRS<br /> Today Wi-Fi and GPRS are the most prevalent methods of mobile data transfer techniques. The proposed system is set to utilize one or both of the<br /> technologies for transfer of data from one place to another. Mobile Phone Architecture: As this system is mobile based, so the Developer would have<br /> to learn the architecture of mobile and as Mobile devices are challenging environments for software development: They have limited capabilities and<br /> programming interfaces and they are highly heterogeneous. Together, these factors often result in the need for customization of mobile applications<br /> for individual device types - a time consuming and costly endeavor.GPS Technology:<a href='http://gps.about.com/od/glossary/g/GPS.htm' class="matched-text" title='http://gps.about.com/od/glossary/g/GPS.htm' target='_blank'> The Global Positioning System (GPS) is a technical marvel made<br /> possible by a group of satellites in earth orbit that transmit precise signals, allowing GPS receivers to calculate and display accurate location<br /> speed, and time information to the user,</a> so the Developer will be using GPS technology to upload location data on the server.Programming Language<br /> SkillsAndroid OS programming (Google Java): The application running on the administrator's mobile phone is going to developed using Android platform<br /> ACTIVITYs). Mastering Android is a significant challenge given the steep learning curve it requires with pre-requisites involving advanced skills<br /> with Java programming language and concepts like multithreading, handlers, services & timers.2.1 Feasibility AnalysisThe developer has<br /> feasibility analysis after planning and presented a report on this.2.1.1 Schedule feasibility reportIt is a<a href='http://wiki.answers.com/Q/What_are_the_types_of_project_feasibility_factors' class="matched-text" title='http://wiki.answers.com/Q/What_are_the_types_of_project_feasibility_factors' target='_blank'> process of assessing the degree to which<br /> the potential time frame and completion dates for all major activities within a project meet organizational deadlines and constraints for affecting<br /> change.</a> Most of the IT projects will cause failure due to the delay in project deadline. The proposed project android base mobile guard software<br /> system will require 33 weeks and time management for each task is properly done via Gant Chart.Gant chart attach in appendix 2.1.2<br /> Feasibility:In technical feasibility we have to find out all the technical requirements that are needed in the development of the system and there<br /> availability with us. The study of the technical feasibility encompasses the hardware requirements, software requirements and the technological<br /> requirements that would be involved in the development of the system. It is necessary to study technical feasibility as the major cost in the<br /> development of the project is involved in the hardware, software and technological resources. After making thorough study about the project<br /> requirement I have found that following:-   2.1.2.1 Resources RequiredS.noHardware Requirement1CPU: 1.0 GHz Pentium IV ,Window 7,Window<br /> Memory: 2GB (or more)2Disk Space: 2 GB space(at least)3Monitor: Any Standard Monitor4Peripherals: Mouse, Keyboard5Android mobile phone6Wi-Fi or data<br /> cardTable 9: Hardware RequirementS.NOSoftware Requirement1Operating System : Windows 72Software Development Tools: Eclipse  3.6.2<br /> Graphic Design Tools: Microsoft Project, Visio 20074Presentation Tools: MS Word 2007, MS PowerPoint 20075ADT BundleTable 10:<br /> Operational FeasibilityIt may be defined as,<a href='http://wiki.answers.com/Q/What_are_the_types_of_project_feasibility_factors' class="matched-text" title='http://wiki.answers.com/Q/What_are_the_types_of_project_feasibility_factors' target='_blank'> the process of assessing the degree to which a proposed system solves business problems or takes<br /> advantage of business opportunities.</a> Problems addressed and advantages of this system are provided in the documentation.2.1.4 Economical<br /> FeasibilityThe purpose for assessing economic feasibility is mainly to identify the financial benefits and costs associated with the development<br /> project. Economic feasibility is referred as cost and benefit analysis for any system. Cost Benefits are included under Rationale (tangible benefits<br /> by the developer. The cost management process Includes 1. Project cost estimation: It involves developing an approx. or estimate of the cost of<br /> resource needed to complete the project. 2. Project cost budgeting:<a href='http://quizlet.com/9399719/project-management-chapter-7-flash-cards/' class="matched-text" title='http://quizlet.com/9399719/project-management-chapter-7-flash-cards/' target='_blank'> It involves allocating the overall cost estimate to individual</a> work item<br /> establish baseline for measuring performance. Main output are-cost baseline, project funding output of cost budget. 3. Project cost control: It<br /> involves controlling change to the project budget. Outputs are performance measurement, request change, corrective action and update of project<br /> management<br /></p>
+                        
+                        
+                    </div>
+                    
+                </div> 
+            </div>
+
+            <div id="footer">
+                <div id="footermenu">
+                    <div id="col1">
+                        <ul>
+                            <li>
+                                <a title="Plagiarism detection software" href="http://www.scanmyessay.com/plagiarism-detection-software.php">Plagiarism Detection Software</a>
+                            </li>
+                            <li>
+                                <a title=" Plagiarism Test" href="http://www.scanmyessay.com/plagiarism-test.php">Plagiarism Test </a>
+                            </li>
+                            <li>
+                                <a title="Plagiarism Detector" href="http://www.scanmyessay.com/plagiarism-detector.php">Plagiarism Detector</a>
+                            </li>
+                            <li>
+                                <a title="Detect Plagiarism" href="http://www.scanmyessay.com/detect-plagiarism.php">Detect Plagiarism</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="col2">
+                        <ul>
+                            <li>
+                                <a title="Essay Checker" href="http://www.scanmyessay.com/essay-checker.php">Essay Checker</a> 
+                                | <a href="http://www.scanmyessay.com/free-check-for-plagiarism.php">Free Check for Plagiarism</a>
+                            </li>
+                            <li>
+                                <a title="Free lesson plans" href="http://www.scanmyessay.com/lesson-plans.php">Lesson plans</a>
+                            </li>
+                            <li>
+                                <a title="Avoid plagiarism" href="http://www.scanmyessay.com/avoid-plagiarism.php">Avoid Plagiarism</a>
+                            </li>
+                            <li>
+                                <a title="Plagiarism Check" href="http://www.scanmyessay.com/plagiarism-check.php">Plagiarism Check</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="col3">
+                        <ul>
+                            <li>
+                                <a title="Plagiarism prevention software" href="http://www.scanmyessay.com/plagiarism-prevention.php">Plagiarism Prevention</a>
+                            </li>
+                            <li>
+                                <a title="Turnitin" href="http://www.scanmyessay.com/turnitin.php">Turnitin </a> | <a href="http://www.scanmyessay.com/check-for-plagiarism-free.php">Check for Plagiarism Free</a>
+                            </li>
+                            <li>
+                                <a title="Editing services" href="http://www.scanmyessay.com/essay-marking/index.php">Editing Services</a>
+                            </li>
+                            <li>
+                                <a title="Free Scanner Software" href="http://www.essaycoursework.com/coursework-writing.php">Coursework writing</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="footerbottom">
+                    <p>
+                        Copyright © 2012 All Rights Reserved. 
+                        <a href="http://www.scanmyessay.com">Scan My Essay</a> 
+                        - Free Plagiarism Scanner, Checker and Detection Tool.  
+                        Viper and ScanMyEssay.com are trading names of Angel Business Limited, 
+                        a Company registered in England and Wales with Company Registration No: 07344835, 
+                        The Loft, 3 Plumptre Street, The Lace Market, Nottingham NG1 1JL | 
+                        <a href="http://www.scanmyessay.com/viper-keygen-crack.php">Warning - Viper Keygen / Viper Crack</a>
+                    </p>
+                    <p>
+                        Please note that by using ScanMyEssay.com, VIPER and any other  software or resources on the ScanMyEssay Website, you are signifying  your agreement
+                        to our <a href="http://www.scanmyessay.com/terms.php">terms and conditions</a>, and our <a href="http://www.scanmyessay.com/privacy-policy.php">privacy policy</a> | <a href="http://www.scanmyessay.com/sitemap.xml">XML sitemap</a> 
+                        | <a href="http://www.scanmyessay.com/ror.xml">ROR</a> 
+                        | <a href="http://www.scanmyessay.com/urllist.txt">TXT</a>
+                        | <a href="http://www.scanmyessay.com/sitemap.html">HTML</a>
+                        | <a href="http://www.scanmyessay.com/sitemap.php">PHP</a> | <a href="http://cn.scanmyessay.com">剽窃检查</a>
+                        | <a href="http://es.scanmyessay.com">Verificador de plagio gratuito</a> 
+                        | <a href="http://fr.scanmyessay.com/">Détecteur de plagiat gratuit</a> 
+                        | <a href="http://in.scanmyessay.com/">Viper साहित्यिक चोरी जांचने का एक निशुल्क साधन...</a>
+
+                    </p>
+                </div> 
+            </div>
+
+        </div>
+         
+    </body>
+</html>

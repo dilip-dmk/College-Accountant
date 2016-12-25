@@ -1,0 +1,420 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Plagiarism Checker | Viper - Free Plagiarism Checker and Scanner Software</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="http://feeds.feedburner.com/ViperScanner" rel="alternate" type="application/rss+xml" title="ScanMyEssay RSS. News &amp; Updates"/>
+        <link href="http://www.scanmyessay.com/css/main.css" rel="stylesheet" type="text/css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+        <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js" type="text/javascript"></script>
+        <link rel="shortcut icon" href="http://www.scanmyessay.com/favicon.ico"/>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#exp-content").hide();
+                $("#s1").click(function () {
+                    $("#exp-content").fadeIn("slow"); //fadeIn
+                    $("#s1").hide();
+                });
+                $("#h1").click(function () {
+                    $("#exp-content").hide("slow");
+                    $("#s1").show();
+                });
+            });
+            
+        </script>
+
+        <style type="text/css">
+        	
+        	#plg-notes {
+        		margin: 15px 0;
+        	}
+        .no-underline {
+        	text-decoration:none;
+        }
+        .matched-text 
+        {
+        	text-decoration:none;
+        	background-color: #fff86a /*#febbbb*/; 	
+        }
+        #document-text a {
+        	color: #000;
+        }
+        #document-text a:hover {
+        	color: #000;
+        }        
+        .divcenter {
+        	margin: 5px 0;
+        	padding-left: 1px;
+        }
+        .coner-radius 
+        {
+        	-moz-border-radius:3px;
+        	-webkit-border-radius:3px;
+        }
+        #h1 {
+        	display: block;
+        	text-align: right;
+        }
+        
+        #main 
+        {
+        	padding: 5px 5px 20px 5px;       	
+        }
+        #menu ul li h2 
+        {
+           	margin: 5px 5px;
+           	color: #ccc;
+        }
+          
+        	.main-container-top{
+        	
+        		border: 1px solid #fcefa1; /*need removing this*/
+        		background: #fbf9ee;
+        		width: auto;
+        		height: auto;
+        		margin-right: 0;
+        		margin-top: 40px;
+        		float: none;
+        	}
+            .main-container-mid {
+        	    border: 1px solid #aaa; /*need removing this*/
+            	width: auto;
+            	height:auto;
+            	margin: 5px 0;
+            }
+            .main-container-bottom {
+            	border: 1px solid #aaa; /*need removing this*/
+            	width: auto;
+            	height:auto;
+            	margin: 2px 0;	
+            }
+            
+        	.ie-h1-fix {
+        		margin-top: 0px;
+        		padding-bottom: 3px;
+        	}
+        	
+        	.red-text {
+        		color: #c40028;
+        	}
+        	
+        	#rounded-corner
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 9px;
+	margin: 1px;
+	text-align: left;
+	border-collapse: collapse;
+	
+}
+
+#rounded-corner tbody 
+{
+	width: inherit;
+	height: 300px;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+#rounded-corner thead th.rounded-location
+{
+	/* background: #ccc;  #b9c9fe;*/
+	-moz-border-radius-topleft: 3px;
+	-webkit-border-top-left-radius: 3px;
+    width: 40%;
+   /* background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(247,247,247,1)), color-stop(50%,rgba(132,132,132,1)), color-stop(50%,rgba(132,132,132,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+  /* background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(52%,rgba(209,209,209,1)), color-stop(100%,rgba(242,242,242,1))); /* Chrome,Safari4+ */
+}
+#rounded-corner thead th.rounded-doc-title
+{
+    width: 30%;
+}
+#rounded-corner thead th.rounded-plg-wrd-count
+{
+}
+#rounded-corner thead th.rounded-mst-plg-pecnt
+{
+}
+#rounded-corner thead th.rounded-unq-wrds-mtch
+{
+}
+#rounded-corner thead th.rounded-unq-mtch-pecnt
+{
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(52%,rgba(209,209,209,1)), color-stop(100%,rgba(242,242,242,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+	/*background: #ccc;*/
+	-moz-border-radius-topright: 3px;
+	-webkit-border-top-right-radius: 3px;
+}
+#rounded-corner th
+{
+	padding: 8px;
+	font-weight: normal;
+	font-size: 13px;
+	color: #555;
+	/*background: #ccc;*/
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(52%,rgba(209,209,209,1)), color-stop(100%,rgba(242,242,242,1))); /* Chrome,Safari4+ */
+}
+#rounded-corner td
+{
+	padding: 8px;
+	background: #f9f9f9;
+	border-top: 1px solid #fff;
+	color: #555;
+	height: auto;
+}
+
+#rounded-corner tfoot td.rounded-foot-left
+{
+	/*background: #ccc;*/
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(242,242,242,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(226,226,226,1))); /* Chrome,Safari4+ */
+	-moz-border-radius-bottomleft: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+}
+#rounded-corner tfoot td.rounded-foot-right
+{
+	background: #ccc;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(242,242,242,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(226,226,226,1))); /* Chrome,Safari4+ */
+	-moz-border-radius-bottomright: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+}
+#rounded-corner tbody tr:hover td
+{
+	background: #dadada;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(241,241,241,1)), color-stop(51%,rgba(225,225,225,1)), color-stop(100%,rgba(246,246,246,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(235,241,246,1)), color-stop(50%,rgba(171,211,238,1)), color-stop(51%,rgba(137,195,235,1)), color-stop(100%,rgba(213,235,251,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(244,250,249,1)), color-stop(51%,rgba(231,245,243,1)), color-stop(100%,rgba(248,252,251,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(234,255,229,1)), color-stop(51%,rgba(209,255,199,1)), color-stop(100%,rgba(240,255,237,1))); /* Chrome,Safari4+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(255,238,229,1)), color-stop(51%,rgba(255,219,199,1)), color-stop(100%,rgba(255,243,237,1))); /* Chrome,Safari4+ */
+}
+        </style>
+       
+    </head>
+    <body>
+        <div id="wrap">
+            
+            <div id="top">
+                <div id="top-left-tr">
+                    <a href="http://www.scanmyessay.com" title="ScanMyEssay">
+                        <span>Plagiarism Checker</span>
+                    </a> 
+                </div>
+
+                <div id="top-tr">
+                    <a href="http://www.scanmyessay.com/feedback/index.php" title="Contact us">Contact us</a>
+                    | 
+                    <a href="http://www.scanmyessay.com/universities.php">Universities</a>
+                    |
+                    <a href="http://www.scanmyessay.com/viper-background.php">History</a>
+                    |
+                    <a href="http://www.scanmyessay.com/testimonies.php">Testimonies</a>
+                    |
+                    <a href="http://www.scanmyessay.com/press/index.php" title="Viper Press">Press</a>
+                    |
+                    <a href="http://www.scanmyessay.com/about-us.php" title="About us">About us</a>
+                    |
+                    <a href="http://www.scanmyessay.com/sitemap.php" title="Sitemap">Sitemap</a>
+                    |
+                    <a href="http://www.scanmyessay.com/help/index.php" title="Help">Help</a>
+                    |
+                    <a href="http://www.ukessays.com/essay-help.php" title="Essay help" target="_blank">Essay help</a>
+                    |
+                    <a href="http://www.scanmyessay.com/rss/index.php" title="RSS">RSS</a>
+                    |
+                    <a href="http://www.scanmyessay.com/login/index.php" title="Log in">Log in</a>
+                </div>    
+            </div>
+               
+            <div id="menu">
+                <ul>
+                    <li>
+                        <h2>Plagiarism Report For '3.docx'</h2>
+                    </li>
+                </ul> 
+            </div>
+
+            <div id="main">
+                <div class="main-container-top coner-radius">
+                    <h1 class="red-text ie-h1-fix">
+                        How does Viper work.....?
+                    </h1>
+                    <a id="s1" class="no-underline" href="#">[+] Read more..</a>
+					<div id="exp-content">
+                        Viper scans your work against over 10 billion web pages and work previously 
+                        submitted to our firm. Once the scan is completed, the report delivers content 
+                        that may match these other sources, including links to the sites that contain 
+                        the same content.
+                        <br />
+                        <br />
+                        <b class="red-text">What Do the Results Mean?</b><br />
+                        If the report sends back positive matches to content found elsewhere, there is no need to panic and assume you have plagiarised your work. Instead, review the report carefully and consider the following:
+                       
+                        <ul>
+                        <li>
+                        Is the material an entire quote, a sentence, or a fragment of 4-5 words often found together? Viper will show a match where there is a string of five or more 
+                        words that are the same as your work. Even if this is not actually plagiarism, it is important that Viper does not ignore these fragments as they draw your 
+                        attention to any sentences where the writer has &#39;rephrased&#39; parts of the 
+                        original material without referencing the source.
+                        </li> 
+                            
+                        <li>If it was intended to be a quote that you were going to attribute to the source, 
+                            did you remember to properly reference it? Sometimes, Viper will identify 
+                            matching material that is available on websites, but the reference might have 
+                            been found within another source. Just because the work has content that matches 
+                            a particular website does not mean that every possible source where it appears 
+                            has to be referenced. Just make sure that at least one reference covers that 
+                        content.
+						</li>
+                        <li>Did you actually use a footnote and it was just simply not picked up by Viper? 
+                            This review is just a means of double-checking that all references have been 
+                            included.
+						</li>
+                        <li>Could Viper have just picked up a phrase that you used more than once in your 
+                            document? This may be a way to ensure that your writing is tight rather than 
+                            repetitive or relies on overly used phrases.
+						</li>    
+                        <li>Did you use too many direct quotes? Viper checks for direct quotes and delivers 
+                            an overall percentage of words it views as direct quotes. Clearly, this should 
+                            not be too high as work that relies too heavily on other material is not 
+                            &#39;original&#39;.
+						</li>
+                        </ul>
+                            <b class="red-text">A Guide on Viper Results</b>
+                            <br/>This guide explains how Viper can identify matching content when it scans your work:
+                            <br/>
+                            <br/><b class="red-text">Overall plagiarism rating 6% or less : </b>
+                            <br/>The results are that it is highly unlikely that this document contains plagiarised material. A careful check will only be necessary if this is a lengthy document. For example, a 6% result within a 15,000 word essay would be of concern because it could mean that direct quotes are too lengthy or there are too many places where a reference was not listed.<br/>
+                            <br/><b class="red-text">Overall plagiarism rating 6% - 12% : </b>
+                            <br/>The results are that there is a low risk that the document contains any plagiarised material. Most of the matching content will probably be fragments. Review your report for any sections that may not have been referenced properly.<br/>
+                            <br/><b class="red-text">Overall plagiarism rating 13% - 20% : </b>
+                            <br/>The results are that there is a medium risk that the document contains any plagiarised material. There may be sections that match websites so it is important to check that proper credit was attributed to the other sources. The scan may not have detected quotation marks or footnotes that were used. For example, if an opening quotation mark was included but there was not a closing quotation mark, then this could explain the higher result. <br/>
+                            <br/><b class="red-text">Overall plagiarism rating 21%+ : </b>
+                            <br/>The results are that there is a high risk that the document contains plagiarised material. If the overall rating is this high, you need to check your report very carefully. It may be that there are a lot of matching fragments and the software has not identified all direct quotes , but it is critical that you go through the entire document and address every phrase or fragment that the scan has flagged to reduce this percentage.<br/>
+                            <a id="h1" class="no-underline" href="#">[-] hide</a>
+                        
+                    </div>
+                </div>
+                <div class="main-container-mid coner-radius">
+                    <table id="rounded-corner" summary="URL found to be copied">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="rounded-location">Location</th>
+                                <th scope="col" class="rounded-doc-title">Title</th>
+                                <th scope="col" class="rounded-plg-wrd-count">Words Matched</th>
+                                <th scope="col" class="rounded-mst-plg-pecnt">Match (%)</th>
+                                <th scope="col" class="rounded-unq-wrds-mtch">Unique Words Matched</th>
+                                <th scope="col" class="rounded-unq-mtch-pecnt">Unique Match (%)</th>
+                            </tr>
+                        </thead>    
+                        <tfoot>
+                            <tr>
+                                <td colspan="5" class="rounded-foot-left"><em>Documents found to be plagiarised</em></td>
+                                <td class="rounded-foot-right">&nbsp;</td>
+                            </tr>
+                        </tfoot>
+                        <tbody id="ajaxtable"><tr><td><a href=http://www.seminarstopics.com/seminar/gps target="_blank">http://www.seminarstopics.com/seminar/gps</a></td><td>Gps - SeminarsTopics.com - Seminar Topics</td><td>45</td>
+                          <td>1</td><td>0</td><td><1</td></tr><tr><td><a href=https://play.google.com/store/apps/details?id=com.bloketech.lockwatch&hl=en target="_blank">https://play.google.com/store/apps/details?id=com.bloketech.lockwatch&hl=en</a></td><td>Lockwatch - Find Stolen Phone - Android Apps on Google Play</td><td>34</td><td>1</td><td>34</td><td>1</td></tr><tr><td><a href=https://play.google.com/store/apps/details?id=com.teltechcorp.trapcall&hl=en target="_blank">https://play.google.com/store/apps/details?id=com.teltechcorp.trapcall&hl=en</a></td><td>TrapCall: Unmask Blocked Calls - Android Apps on Google Play</td><td>34</td><td>1</td><td>0</td><td><1</td></tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <div id="plg-notes" class="divcenter red-text">
+                       <b> Matching Content: 1%</b>
+                    </div> 
+                <div class="main-container-bottom coner-radius">
+                    <div id="document-text" class="divcenter">
+                        <h2>Master Document Text</h2>
+                        <!--<a href="" class="matched-text"> xyz </a> -->
+                        <p> LITERATURE REVIEW3.1 Advanced PreliminaryThe idea of this project ignited in developers mind once when in college there was sport week where announce<br /> an the developer take the participate in cricket and the cricket match was in mulund city in Mumbai, Maharashtra ,the developer wake up early in the<br /> morning and get ready to go to mulund via railway station. When he reach to the destination he keep the mobile in the bag because while playing<br /> cricket the mobile can fall down and can be damage .when the match start developer was playing an cricket and that time one boy come and take my<br /> mobile from the bag an run away. After finish the match in one hour when developer check the bag an find the mobile was not there in the bag, I ask<br /> the friends about the mobile and asked to sir but no one noes about the mobile. After next day's developer go to the police station and make an FIR<br /> of misplaced mobile after make it they told me that they will call me when they will found the mobile. After 3 months they call me and I got<br /> mobile back poor condition. Therefore the idea for development and implementation of such project struck into developer's mind which can be<br /> multipurpose for eradicating crime.Developer knew some few thing before making the project:1. Google- Maps  The developer knew that the best and most<br /> accurate procedure to find any place is Google-Map, a service which is known to everybody, so inclusion of this in project won't need an extra<br /> training of users to make them understand the procedure of finding a place. </w:t><br /> 
+                        System (GPS) trackingThe developer knew that the most accurate procedure to find the exact location of a place is by only GPS and if he could attach<br /> GPS with Google-Map then the users can find the exact location of anyone and as     these devices are on everybody's android mobile.<br /> MAP WITH GPS COORDINATES (GOOGLE TEAM, 1995)3.2SecondaryResearch First phase of any software development model involves research and analysis method<br /> to find specific data regarding any project. Developer has categorized them under specific categories based on their use during development of<br /> project.3.3 Domain Research Domain research is required as project domains vary in various cases and once domain research is accomplished in<br /> particular module, then analysis and designing of particular module provides ease of its use.3 Mobile Development Life Cycle: Mobile application<br /> lifecycle management will be followed and few more facts are known like<a href='http://g8appz.wordpress.com/2014/02/10/believe-mobile-do-mobile-earn-mobile-18/' class="matched-text" title='http://g8appz.wordpress.com/2014/02/10/believe-mobile-do-mobile-earn-mobile-18/' target='_blank'> the diagnostic approach is very challenging due to the diversity of devices<br /></a><a href='http://g8appz.wordpress.com/2014/02/10/believe-mobile-do-mobile-earn-mobile-18/' class="matched-text" title='http://g8appz.wordpress.com/2014/02/10/believe-mobile-do-mobile-earn-mobile-18/' target='_blank'> Mobile app performance is not mature to have end-to-end or front-end monitoring yet and Mobile app</a> development<a href='http://g8appz.wordpress.com/2014/02/10/believe-mobile-do-mobile-earn-mobile-18/' class="matched-text" title='http://g8appz.wordpress.com/2014/02/10/believe-mobile-do-mobile-earn-mobile-18/' target='_blank'> requires in-depth network (e.g<br /> bandwidth optimization in codes, bandwidth simulation) and mobile deployment knowledge.</a> (Amla harshim ,monkieblankie, 2006 )3.2.1.4<br /> Client-Server Communication (Mobile Application will upload data to server)The proposed system will use Client-Server architecture to store the data<br /> in the database of server so that separate copies of the item are not stored on each client3.2.1.5 Real-time Location gathering: For absolute<br /> location of data various location gathering technique is studied-Wi-Fi Location accessed via Wi-Fi is accurate to the cellular provider network<br /> towers and generally the towers provide the signals up to 50-60 km, so the location accuracy is anywhere from 50-60 Km which doesn't fulfill<br /> purpose.</w:t><Conclusion: The proposed system will not access the location of users by Wi-Fi, as this is less accurate than GPS location providers<br /> GPS:<a href='http://searchmobilecomputing.techtarget.com/definition/Global-Positioning-System' class="matched-text" title='http://searchmobilecomputing.techtarget.com/definition/Global-Positioning-System' target='_blank'> The GPS (Global Positioning System) is a "constellation" of 24 well-spaced satellites that orbit the Earth and make it possible for people with<br /> ground receivers to pinpoint their geographic location.</a><a href='http://searchmobilecomputing.techtarget.com/definition/Global-Positioning-System' class="matched-text" title='http://searchmobilecomputing.techtarget.com/definition/Global-Positioning-System' target='_blank'> GPS equipment is widely used in science and has now become sufficiently low-cost so that<br /> almost anyone can own a GPS receiver</a> (Moshe Peleg, 2009) Conclusion: The system will access the location of users by GPS location<br /> Available ResourcesBook Name Book Detail Learning AndroidPublisher O'Reilly, Author Marko Gargenta Year 2011, Pages 292Professional Android Sensor<br /> ProgrammingPublisher:Wroxm, By:Greg Milette, Adam Stroud year 2013,  pages 552Table 11: Avalible ResourceWEBSITE S.no LINK1Google Android Team<br /> The Android SDK. Available: http://code.google.com/android/add-ons/google-apis/index.html. Last accessed 11th Nov 2013.2Google Android Team<br /> ÿLocationProvider Available: http://developer.android.com/reference/android/location/LocationProvider.htmlhttp://developer.android.com/reference<br /> android/location/LocationProvider.html. Last accessed 11th Nov 2013.36.Google Android Team (2007). WifiManager. Available: http://developer.android<br /> com/reference/android/net/wifi/WifiManager.html. Last accessed 11th Nov 20134Bhakti Satalkar(2010). Modified Waterfall Model Available:     http<br /> www.buzzle.com/articles/modified-waterfall-model.html   Last accessed 12 Nov 2013.Table 12: Website Link<3.5 Market Research NQ Mobile<br /> SecurityDescriptionPros There is an anti -virus in the application Provide an application protection Cons Not have an backup Not proper user friendly<br /> Sourcehttps://play.google.com/store/apps/details?id=com.nqmobile.antivirus20https://play.google.com/store/apps/details?id=com.nqmobile.antivirus<a href='https://play.google.com/store/apps/details?id=com.bloketech.lockwatch&hl=en' class="matched-text" title='https://play.google.com/store/apps/details?id=com.bloketech.lockwatch&hl=en' target='_blank'></a><a href='https://play.google.com/store/apps/details?id=com.bloketech.lockwatch&hl=en' class="matched-text" title='https://play.google.com/store/apps/details?id=com.bloketech.lockwatch&hl=en' target='_blank'></a><br /> Table 13: Similar system-1Kaspersky Mobile Security DescriptionPros There is an anti -virus in the application Web protection providedCons No have<br /> any lock feature Not proper user friendly Sourcehttps://play.google.com/store/apps/details?id=com.nqmobile.antivirus20https://play.google.com/store<a href='https://play.google.com/store/apps/details?id=com.bloketech.lockwatch&hl=en' class="matched-text" title='https://play.google.com/store/apps/details?id=com.bloketech.lockwatch&hl=en' target='_blank'></a><a href='https://play.google.com/store/apps/details?id=com.bloketech.lockwatch&hl=en' class="matched-text" title='https://play.google.com/store/apps/details?id=com.bloketech.lockwatch&hl=en' target='_blank'><br /> apps/details?id=com.nqmobile.antivirus20Table 14: Similar system-24.</a> RESEARCH METHODResearch is the systematic process of collecting and analysing<br /> information to increase our understanding of the phenomenon under study. It is the initial step which lays down the foundations for the foundation of<br /> the project. The research about the problem context the user's perspective, user's expectations, users dislikes etc. make the developer more clear<br /> about the requirements for the project and clear all ambiguities related to the requirements. Hence research is the heart of a project and the<br /> primary research and technical research are as follows:4.1 Primary ResearchPrimary research is the research conducted to unearth original data<br /> Primary research is the initial phase of the research to collect the information or requirements in a more specific or clear way. The main motto of<br /> the primary research is to get more specific with the requirements by directly observing the same type of the system or getting in touch with the<br /> people who has used this type of the system before. To complete this project developer gathers information  4.1.1 Questionnaire<br /> justification That developer has given 11 Question Filled questionnaire from 1 users are provided in appendix part of this documentation at the<br /> NOThe objective of the questionnaire1To verify the nature and seriousness of the identified problems2 Gather users requirement3For defining scope of<br /> the project4For verification of operational feasibilityTABLE 15: Objective Of The QuestionnaireSYSTEM DESCRIPTIONBasically the main objectives of<br /> this project to develop a mobile based App which can help to protect data and smart phone from the thief. It help to find the mobileInstructions:The<br /> following questionnaire sections will help the developer to be precise and focused about the project and the needs. It is important that you answer<br /> all applicable questions thoroughly. Section AThis section is optional , you may fill in your company Contact DetailsSection BThis section<br /> general question, do check the most suitable options from the questions below.Section CThis section is more domains specific and it's mandatory to<br /> answer all the questions.Section DFeel free to share your views/ suggestions and help us understand the basic requirementsPERSONAL INFORMATIONName<br /> OPTIONAL):Designation:Organization :Contact Number:Table 16: Questionnaire SectionsCompany Address:SECTION BGENERAL INFORMATIONQ1. Which android (OS<br /> version do you used? Just tick to the given checkbox Android 2.3, Gingerbread< Android 3.0, Honeycomb < Android 4.0,<br /> Jelly Bean  <Justification: while giving this question, developer can knew how many user using most of the version and make the system according<br /> the version Q2. Rate the speed of the Internet connection in your mobile? Excellent  Good< Average< Poor< </w:t></Justification: This question was><br /> asked to know the satisfaction level of the users for the      internet.Q3.  How much RAM do you have in<br /> while giving this question, developer can knew how many user are having  capacity of RAM in there phone Q4. What will you prefer when your mobile<br /> by a thief? FIR in police station< buy an new mobile < find a mobile by your own with help of  tracker <Justification: while giving<br /> developer can knew how many user like to prefer 3rd option find a mobile by your own with help of tracker, when the mobile is loss. SECTION CFOR THE<br /> SYSTEM TO BE DEVELOPEDQ5.Have you ever come across such kind of App before? Please provide some details for those Applications<br /> Justification: while giving this question, developer can knew how many software are has same features in market and what drawback are there in app.Q<br /> Where do you prefer to take a backup Dropbox< Google Drive< Sky Drive<Other please Mention<br /> Justification: while giving this question, developer can knew how many user want a data should store if backup sms has been sent to mobile Q7. What<br /> do you prefer, When data goes to an unknowns person hand?  Erase < mobile should in lock mode< nothing should happen Justification: while<br /> question, developer can knew how many user prefer most of its .It will help to develop a system.Q8. What do you think, when thief change the sim card<br /> and put another sim the current sim number should come on? E-mail SMS Justification: while giving this question, developer can knew how many user<br /> prefer as per given option. It will help the user where the SIM number should be send.Q9.Where do you save most of the data (contact and messages) in<br /> smart phone? SIM memory< External memory <Justification: while giving this question, developer can knew how many user save the data in smart phone<br /> So according to that feature will make. Q10. Do you want to block your outgoing call when phone is lost or rob Yes< No<If yes, specify<br /> Justification: while giving this question, developer can knew how many user want the outgoing call should block when lost their mobile or rob by<br /> thief. It will help the developer to implement the feature Q11. Do your mobile software used an internet without any permission? Yes< No<br /> Justification: while giving this question, developer can knew how many user mobile software used an internet without a permission it will help the<br /> developer to develop a feature. <Q12.What are the options would you like to have in the Mobile Guard App<br /> Justification: while giving this question, developer knew what the user want to add in the SECTION DAdditional Requirements<br /> Any Suggestions<br /> DisclaimerThe Information collected by the questionnaire will be used for development of the system "Mobile Guard  App". The information<br /> will not be used illegally anywhere in any form. The users are assured that their data will be kept strictly confidential and will be used for<br /> academic research purpose only. </w:t></w:r><w:r w:rsidRPr="00723993"><w:rPr><w:b/><w:lang w:eastAsia="ar-SA"/></w:rPr><w:t>Approved ByApproved By<br /> Mrs. Geeta Nagpal ______________________4.1.2 Interview Question and its justification This research method allows developer to put a set<br /> questions to an interviewee. The interviewee has his/her own views and answers according to the questions asked. The whole process involves only the<br /> developer i.e. the interviewer and the interviewee and the interview is conducted personally. The interviewee can answer discussing all the important<br /> things as well as including the reason for the answer.4.1.3 Focus GroupFocus GroupDear sir/Madam,The developer wishes to gather some information from<br /> you for the research work of the final year project, regarding Programming discussion forum and related issues. The questions would be limited to<br /> your understanding of discussion forum and their uses. It would be very kind of you to answer the following question to best of your knowledge. This<br /> session will be aimed at gathering information regarding the challenges and problem being faced in the field of programming languages.I assure you<br /> that all the information collected from you shall be strictly used for educational research purpose and no information shall be used or shared to any<br /> one without your prior consent.Name of the user-------------------------------- </w:t></w:r><w:r><w:rPr><w:rFonts w:ascii="Times New Roman" w:e </w:t><br /> w:r><w:r w:rsidRPr="00636F49"><w:rPr><w:rSignature of the user ------------------------------</w:t></w:r><Privacy Issues and policies The collected<br /> information will be kept confidential and will not be disclosed shared. Individual identities will not be revealed and participant's opinions details<br /> will not be shared and exposed at any time.Instructions: This focus group study has been prepared for the Students. It comprises of four sections<br /> Section A: Personal Information.Section B: Engagement Question. Section C: Exploration Question.Section D: Share your views/ suggestions. About the<br /> Group:It consists of group of members where people discussing on topics. This is for Expert level where number of experts from different programming<br /> languages are there. Expert level consists of any age group members it depends on how much they are having knowledge on programming languages.Section<br /> A </w:t></w:r><w:r><w:t>PERSONAL INFORMATION</w:t></w:r></w:p></w:tc></w:tr>PERSONAL INFORMATIONSupervisor Name:Group Name:Group Members:Date:Venue<br /> Topic:Section BQuestion: Does Discussion security software play any role in daily life? If yes then reason...Justification: To know the importance of<br /> discussion forum these days.Question: what are the various ways to store the backup data? Give at least one point.Justification: To know about the<br /> various ways to store backup of the dataSection CQuestion: How many users face problems when the mobile is lost or stolen anywhere?Justification: To<br /> know how user facing what kind of problem may.Question: Share your ideas on mobile security application?Justification: To know what the different<br /> ideas are they want to share. Question: What is the advantages and disadvantages of using current mobile security?Justification: To know about the<br /> advantage and disadvantages of mobile guard it help developer to know about various facts and issues which user is facing.  Question:<br /> features like lock via sms would be benefit to the user?Justification: To know about the importance of enhanced features like lock via sms.Question<br /> Do you feel you are provided with proper functionalities in mobile guard application etc.Justification: To know whether the user is satisfied with<br /> proper functionalities or user needs more. Totally this depend upon on need of the user.Section DAny suggestions or features which would make the<br /> proposed system more desirable?  4.2 Academic research4.2.1 Technical researchProgramming<br /></p>
+                        
+                        
+                    </div>
+                    
+                </div> 
+            </div>
+
+            <div id="footer">
+                <div id="footermenu">
+                    <div id="col1">
+                        <ul>
+                            <li>
+                                <a title="Plagiarism detection software" href="http://www.scanmyessay.com/plagiarism-detection-software.php">Plagiarism Detection Software</a>
+                            </li>
+                            <li>
+                                <a title=" Plagiarism Test" href="http://www.scanmyessay.com/plagiarism-test.php">Plagiarism Test </a>
+                            </li>
+                            <li>
+                                <a title="Plagiarism Detector" href="http://www.scanmyessay.com/plagiarism-detector.php">Plagiarism Detector</a>
+                            </li>
+                            <li>
+                                <a title="Detect Plagiarism" href="http://www.scanmyessay.com/detect-plagiarism.php">Detect Plagiarism</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="col2">
+                        <ul>
+                            <li>
+                                <a title="Essay Checker" href="http://www.scanmyessay.com/essay-checker.php">Essay Checker</a> 
+                                | <a href="http://www.scanmyessay.com/free-check-for-plagiarism.php">Free Check for Plagiarism</a>
+                            </li>
+                            <li>
+                                <a title="Free lesson plans" href="http://www.scanmyessay.com/lesson-plans.php">Lesson plans</a>
+                            </li>
+                            <li>
+                                <a title="Avoid plagiarism" href="http://www.scanmyessay.com/avoid-plagiarism.php">Avoid Plagiarism</a>
+                            </li>
+                            <li>
+                                <a title="Plagiarism Check" href="http://www.scanmyessay.com/plagiarism-check.php">Plagiarism Check</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="col3">
+                        <ul>
+                            <li>
+                                <a title="Plagiarism prevention software" href="http://www.scanmyessay.com/plagiarism-prevention.php">Plagiarism Prevention</a>
+                            </li>
+                            <li>
+                                <a title="Turnitin" href="http://www.scanmyessay.com/turnitin.php">Turnitin </a> | <a href="http://www.scanmyessay.com/check-for-plagiarism-free.php">Check for Plagiarism Free</a>
+                            </li>
+                            <li>
+                                <a title="Editing services" href="http://www.scanmyessay.com/essay-marking/index.php">Editing Services</a>
+                            </li>
+                            <li>
+                                <a title="Free Scanner Software" href="http://www.essaycoursework.com/coursework-writing.php">Coursework writing</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="footerbottom">
+                    <p>
+                        Copyright © 2012 All Rights Reserved. 
+                        <a href="http://www.scanmyessay.com">Scan My Essay</a> 
+                        - Free Plagiarism Scanner, Checker and Detection Tool.  
+                        Viper and ScanMyEssay.com are trading names of Angel Business Limited, 
+                        a Company registered in England and Wales with Company Registration No: 07344835, 
+                        The Loft, 3 Plumptre Street, The Lace Market, Nottingham NG1 1JL | 
+                        <a href="http://www.scanmyessay.com/viper-keygen-crack.php">Warning - Viper Keygen / Viper Crack</a>
+                    </p>
+                    <p>
+                        Please note that by using ScanMyEssay.com, VIPER and any other  software or resources on the ScanMyEssay Website, you are signifying  your agreement
+                        to our <a href="http://www.scanmyessay.com/terms.php">terms and conditions</a>, and our <a href="http://www.scanmyessay.com/privacy-policy.php">privacy policy</a> | <a href="http://www.scanmyessay.com/sitemap.xml">XML sitemap</a> 
+                        | <a href="http://www.scanmyessay.com/ror.xml">ROR</a> 
+                        | <a href="http://www.scanmyessay.com/urllist.txt">TXT</a>
+                        | <a href="http://www.scanmyessay.com/sitemap.html">HTML</a>
+                        | <a href="http://www.scanmyessay.com/sitemap.php">PHP</a> | <a href="http://cn.scanmyessay.com">剽窃检查</a>
+                        | <a href="http://es.scanmyessay.com">Verificador de plagio gratuito</a> 
+                        | <a href="http://fr.scanmyessay.com/">Détecteur de plagiat gratuit</a> 
+                        | <a href="http://in.scanmyessay.com/">Viper साहित्यिक चोरी जांचने का एक निशुल्क साधन...</a>
+
+                    </p>
+                </div> 
+            </div>
+
+        </div>
+         
+    </body>
+</html>

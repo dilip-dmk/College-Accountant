@@ -1,0 +1,422 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Plagiarism Checker | Viper - Free Plagiarism Checker and Scanner Software</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="http://feeds.feedburner.com/ViperScanner" rel="alternate" type="application/rss+xml" title="ScanMyEssay RSS. News &amp; Updates"/>
+        <link href="http://www.scanmyessay.com/css/main.css" rel="stylesheet" type="text/css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+        <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js" type="text/javascript"></script>
+        <link rel="shortcut icon" href="http://www.scanmyessay.com/favicon.ico"/>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#exp-content").hide();
+                $("#s1").click(function () {
+                    $("#exp-content").fadeIn("slow"); //fadeIn
+                    $("#s1").hide();
+                });
+                $("#h1").click(function () {
+                    $("#exp-content").hide("slow");
+                    $("#s1").show();
+                });
+            });
+            
+        </script>
+
+        <style type="text/css">
+        	
+        	#plg-notes {
+        		margin: 15px 0;
+        	}
+        .no-underline {
+        	text-decoration:none;
+        }
+        .matched-text 
+        {
+        	text-decoration:none;
+        	background-color: #fff86a /*#febbbb*/; 	
+        }
+        #document-text a {
+        	color: #000;
+        }
+        #document-text a:hover {
+        	color: #000;
+        }        
+        .divcenter {
+        	margin: 5px 0;
+        	padding-left: 1px;
+        }
+        .coner-radius 
+        {
+        	-moz-border-radius:3px;
+        	-webkit-border-radius:3px;
+        }
+        #h1 {
+        	display: block;
+        	text-align: right;
+        }
+        
+        #main 
+        {
+        	padding: 5px 5px 20px 5px;       	
+        }
+        #menu ul li h2 
+        {
+           	margin: 5px 5px;
+           	color: #ccc;
+        }
+          
+        	.main-container-top{
+        	
+        		border: 1px solid #fcefa1; /*need removing this*/
+        		background: #fbf9ee;
+        		width: auto;
+        		height: auto;
+        		margin-right: 0;
+        		margin-top: 40px;
+        		float: none;
+        	}
+            .main-container-mid {
+        	    border: 1px solid #aaa; /*need removing this*/
+            	width: auto;
+            	height:auto;
+            	margin: 5px 0;
+            }
+            .main-container-bottom {
+            	border: 1px solid #aaa; /*need removing this*/
+            	width: auto;
+            	height:auto;
+            	margin: 2px 0;	
+            }
+            
+        	.ie-h1-fix {
+        		margin-top: 0px;
+        		padding-bottom: 3px;
+        	}
+        	
+        	.red-text {
+        		color: #c40028;
+        	}
+        	
+        	#rounded-corner
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 9px;
+	margin: 1px;
+	text-align: left;
+	border-collapse: collapse;
+	
+}
+
+#rounded-corner tbody 
+{
+	width: inherit;
+	height: 300px;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+#rounded-corner thead th.rounded-location
+{
+	/* background: #ccc;  #b9c9fe;*/
+	-moz-border-radius-topleft: 3px;
+	-webkit-border-top-left-radius: 3px;
+    width: 40%;
+   /* background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(247,247,247,1)), color-stop(50%,rgba(132,132,132,1)), color-stop(50%,rgba(132,132,132,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+  /* background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(52%,rgba(209,209,209,1)), color-stop(100%,rgba(242,242,242,1))); /* Chrome,Safari4+ */
+}
+#rounded-corner thead th.rounded-doc-title
+{
+    width: 30%;
+}
+#rounded-corner thead th.rounded-plg-wrd-count
+{
+}
+#rounded-corner thead th.rounded-mst-plg-pecnt
+{
+}
+#rounded-corner thead th.rounded-unq-wrds-mtch
+{
+}
+#rounded-corner thead th.rounded-unq-mtch-pecnt
+{
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(52%,rgba(209,209,209,1)), color-stop(100%,rgba(242,242,242,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+	/*background: #ccc;*/
+	-moz-border-radius-topright: 3px;
+	-webkit-border-top-right-radius: 3px;
+}
+#rounded-corner th
+{
+	padding: 8px;
+	font-weight: normal;
+	font-size: 13px;
+	color: #555;
+	/*background: #ccc;*/
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(52%,rgba(209,209,209,1)), color-stop(100%,rgba(242,242,242,1))); /* Chrome,Safari4+ */
+}
+#rounded-corner td
+{
+	padding: 8px;
+	background: #f9f9f9;
+	border-top: 1px solid #fff;
+	color: #555;
+	height: auto;
+}
+
+#rounded-corner tfoot td.rounded-foot-left
+{
+	/*background: #ccc;*/
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(242,242,242,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(226,226,226,1))); /* Chrome,Safari4+ */
+	-moz-border-radius-bottomleft: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+}
+#rounded-corner tfoot td.rounded-foot-right
+{
+	background: #ccc;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(242,242,242,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(226,226,226,1))); /* Chrome,Safari4+ */
+	-moz-border-radius-bottomright: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+}
+#rounded-corner tbody tr:hover td
+{
+	background: #dadada;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(241,241,241,1)), color-stop(51%,rgba(225,225,225,1)), color-stop(100%,rgba(246,246,246,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(235,241,246,1)), color-stop(50%,rgba(171,211,238,1)), color-stop(51%,rgba(137,195,235,1)), color-stop(100%,rgba(213,235,251,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(244,250,249,1)), color-stop(51%,rgba(231,245,243,1)), color-stop(100%,rgba(248,252,251,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(234,255,229,1)), color-stop(51%,rgba(209,255,199,1)), color-stop(100%,rgba(240,255,237,1))); /* Chrome,Safari4+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(255,238,229,1)), color-stop(51%,rgba(255,219,199,1)), color-stop(100%,rgba(255,243,237,1))); /* Chrome,Safari4+ */
+}
+        </style>
+       
+    </head>
+    <body>
+        <div id="wrap">
+            
+            <div id="top">
+                <div id="top-left-tr">
+                    <a href="http://www.scanmyessay.com" title="ScanMyEssay">
+                        <span>Plagiarism Checker</span>
+                    </a> 
+                </div>
+
+                <div id="top-tr">
+                    <a href="http://www.scanmyessay.com/feedback/index.php" title="Contact us">Contact us</a>
+                    | 
+                    <a href="http://www.scanmyessay.com/universities.php">Universities</a>
+                    |
+                    <a href="http://www.scanmyessay.com/viper-background.php">History</a>
+                    |
+                    <a href="http://www.scanmyessay.com/testimonies.php">Testimonies</a>
+                    |
+                    <a href="http://www.scanmyessay.com/press/index.php" title="Viper Press">Press</a>
+                    |
+                    <a href="http://www.scanmyessay.com/about-us.php" title="About us">About us</a>
+                    |
+                    <a href="http://www.scanmyessay.com/sitemap.php" title="Sitemap">Sitemap</a>
+                    |
+                    <a href="http://www.scanmyessay.com/help/index.php" title="Help">Help</a>
+                    |
+                    <a href="http://www.ukessays.com/essay-help.php" title="Essay help" target="_blank">Essay help</a>
+                    |
+                    <a href="http://www.scanmyessay.com/rss/index.php" title="RSS">RSS</a>
+                    |
+                    <a href="http://www.scanmyessay.com/login/index.php" title="Log in">Log in</a>
+                </div>    
+            </div>
+               
+            <div id="menu">
+                <ul>
+                    <li>
+                        <h2>Plagiarism Report For 'chaper 4to5.docx'</h2>
+                    </li>
+                </ul> 
+            </div>
+
+            <div id="main">
+                <div class="main-container-top coner-radius">
+                    <h1 class="red-text ie-h1-fix">
+                        How does Viper work.....?
+                    </h1>
+                    <a id="s1" class="no-underline" href="#">[+] Read more..</a>
+					<div id="exp-content">
+                        Viper scans your work against over 10 billion web pages and work previously 
+                        submitted to our firm. Once the scan is completed, the report delivers content 
+                        that may match these other sources, including links to the sites that contain 
+                        the same content.
+                        <br />
+                        <br />
+                        <b class="red-text">What Do the Results Mean?</b><br />
+                        If the report sends back positive matches to content found elsewhere, there is no need to panic and assume you have plagiarised your work. Instead, review the report carefully and consider the following:
+                       
+                        <ul>
+                        <li>
+                        Is the material an entire quote, a sentence, or a fragment of 4-5 words often found together? Viper will show a match where there is a string of five or more 
+                        words that are the same as your work. Even if this is not actually plagiarism, it is important that Viper does not ignore these fragments as they draw your 
+                        attention to any sentences where the writer has &#39;rephrased&#39; parts of the 
+                        original material without referencing the source.
+                        </li> 
+                            
+                        <li>If it was intended to be a quote that you were going to attribute to the source, 
+                            did you remember to properly reference it? Sometimes, Viper will identify 
+                            matching material that is available on websites, but the reference might have 
+                            been found within another source. Just because the work has content that matches 
+                            a particular website does not mean that every possible source where it appears 
+                            has to be referenced. Just make sure that at least one reference covers that 
+                        content.
+						</li>
+                        <li>Did you actually use a footnote and it was just simply not picked up by Viper? 
+                            This review is just a means of double-checking that all references have been 
+                            included.
+						</li>
+                        <li>Could Viper have just picked up a phrase that you used more than once in your 
+                            document? This may be a way to ensure that your writing is tight rather than 
+                            repetitive or relies on overly used phrases.
+						</li>    
+                        <li>Did you use too many direct quotes? Viper checks for direct quotes and delivers 
+                            an overall percentage of words it views as direct quotes. Clearly, this should 
+                            not be too high as work that relies too heavily on other material is not 
+                            &#39;original&#39;.
+						</li>
+                        </ul>
+                            <b class="red-text">A Guide on Viper Results</b>
+                            <br/>This guide explains how Viper can identify matching content when it scans your work:
+                            <br/>
+                            <br/><b class="red-text">Overall plagiarism rating 6% or less : </b>
+                            <br/>The results are that it is highly unlikely that this document contains plagiarised material. A careful check will only be necessary if this is a lengthy document. For example, a 6% result within a 15,000 word essay would be of concern because it could mean that direct quotes are too lengthy or there are too many places where a reference was not listed.<br/>
+                            <br/><b class="red-text">Overall plagiarism rating 6% - 12% : </b>
+                            <br/>The results are that there is a low risk that the document contains any plagiarised material. Most of the matching content will probably be fragments. Review your report for any sections that may not have been referenced properly.<br/>
+                            <br/><b class="red-text">Overall plagiarism rating 13% - 20% : </b>
+                            <br/>The results are that there is a medium risk that the document contains any plagiarised material. There may be sections that match websites so it is important to check that proper credit was attributed to the other sources. The scan may not have detected quotation marks or footnotes that were used. For example, if an opening quotation mark was included but there was not a closing quotation mark, then this could explain the higher result. <br/>
+                            <br/><b class="red-text">Overall plagiarism rating 21%+ : </b>
+                            <br/>The results are that there is a high risk that the document contains plagiarised material. If the overall rating is this high, you need to check your report very carefully. It may be that there are a lot of matching fragments and the software has not identified all direct quotes , but it is critical that you go through the entire document and address every phrase or fragment that the scan has flagged to reduce this percentage.<br/>
+                            <a id="h1" class="no-underline" href="#">[-] hide</a>
+                        
+                    </div>
+                </div>
+                <div class="main-container-mid coner-radius">
+                    <table id="rounded-corner" summary="URL found to be copied">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="rounded-location">Location</th>
+                                <th scope="col" class="rounded-doc-title">Title</th>
+                                <th scope="col" class="rounded-plg-wrd-count">Words Matched</th>
+                                <th scope="col" class="rounded-mst-plg-pecnt">Match (%)</th>
+                                <th scope="col" class="rounded-unq-wrds-mtch">Unique Words Matched</th>
+                                <th scope="col" class="rounded-unq-mtch-pecnt">Unique Match (%)</th>
+                            </tr>
+                        </thead>    
+                        <tfoot>
+                            <tr>
+                                <td colspan="5" class="rounded-foot-left"><em>Documents found to be plagiarised</em></td>
+                                <td class="rounded-foot-right">&nbsp;</td>
+                            </tr>
+                        </tfoot>
+                        <tbody id="ajaxtable"><tr><td><a href=http://standardjava.blogspot.com/2012/02/characteristics-of-java.html target="_blank">http://standardjava.blogspot.com/2012/02/characteristics-of-java.html</a></td><td>JAVA CORE: JAVA CHARACTERISTICS - blogspot.com</td><td>40</td><td>2</td><td>40</td><td>2</td></tr><tr><td><a href=http://homepages.ius.edu/RWISMAN/C490/html/Android-Data-Storage.htm target="_blank">http://homepages.ius.edu/RWISMAN/C490/html/Android-Data-Storage.htm</a></td><td>Android - Data Storage - Indiana University Southeast</td><td>46</td><td>3</td><td>46</td><td>3</td></tr><tr><td><a href=http://learn-android-by-example.blogspot.com/2013/01/android-sqlite-database-example.html target="_blank">http://learn-android-by-example.blogspot.com/2013/01/android-sqlite-database-example.html</a></td><td>Learn Android By Example : Android SQLite Database Example</td><td>25</td><td>2</td><td>25</td><td>2</td></tr><tr><td><a href=http://www.roseindia.net/answers/viewqa/Java-Beginners/2590-Java-MultiThread.html target="_blank">http://www.roseindia.net/answers/viewqa/Java-Beginners/2590-Java-MultiThread.html</a></td><td>Java MultiThread - RoseIndia.net</td><td>40</td><td>2</td><td>0</td><td><1</td></tr><tr><td><a href=http://www.hyperthot.com/pm_sdm.htm target="_blank">http://www.hyperthot.com/pm_sdm.htm</a></td><td>Software Development Methodology - Infinite Spiritual Discovery</td><td>29</td><td>2</td><td>29</td><td>2</td></tr><tr><td><a href=http://www.mindstick.com/Articles/af5c031a-e435-4642-8464-9f7d375087c2/?SQLite%20in%20Android target="_blank">http://www.mindstick.com/Articles/af5c031a-e435-4642-8464-9f7d375087c2/?SQLite%20in%20Android</a></td><td>SQLite in Android - MindStick - MindStick-Unleash Your ...</td><td>45</td><td>3</td><td>0</td><td><1</td></tr><tr><td><a href=http://www.studymode.com/essays/Waterfall-579610.html target="_blank">http://www.studymode.com/essays/Waterfall-579610.html</a></td><td>Waterfall - Term Papers - Nickchuk</td><td>34</td><td>2</td><td>34</td><td>2</td></tr><tr><td><a href=http://www.scribd.com/doc/95038244/Java-Programming target="_blank">http://www.scribd.com/doc/95038244/Java-Programming</a></td><td>Java Programming - Scribd</td><td>40</td><td>2</td><td>0</td><td><1</td></tr><tr><td><a href=http://essaysforstudent.com/print.html?essay=82402 target="_blank">http://essaysforstudent.com/print.html?essay=82402</a></td><td>modified waterfall models - Term Papers - Science</td><td>26</td><td>2</td><td>0</td><td><1</td></tr><tr><td><a href=http://www.j2eebrain.com/java-J2ee-ten-things-a-java-developer-should-know.html target="_blank">http://www.j2eebrain.com/java-J2ee-ten-things-a-java-developer-should-know.html</a></td><td>Java J2EE Tutorials Â» Ten things a Java developer should know</td><td>37</td><td>2</td><td>0</td><td><1</td></tr><tr><td><a href=http://www.scribd.com/doc/103577025/Software-Testing-Induction-Manual-V1-2 target="_blank">http://www.scribd.com/doc/103577025/Software-Testing-Induction-Manual-V1-2</a></td><td>Software+Testing+Induction+Manual+V1.2 - Scribd</td><td>18</td><td>1</td><td>0</td><td><1</td></tr><tr><td><a href=http://www.termpaperwarehouse.com/essay-on/Waterfall/188961 target="_blank">http://www.termpaperwarehouse.com/essay-on/Waterfall/188961</a></td><td>Waterfall - College Essays - Varunchaudhry</td><td>34</td><td>2</td><td>0</td><td><1</td></tr><tr><td><a href=http://essaysforstudent.com/Science/modified-waterfall-models/82402.html target="_blank">http://essaysforstudent.com/Science/modified-waterfall-models/82402.html</a></td><td>modified waterfall models - EssaysForStudent</td><td>26</td><td>2</td><td>0</td><td><1</td></tr><tr><td><a href=http://gstiusa.com/how-we-work/methodologies/waterfall-model/ target="_blank">http://gstiusa.com/how-we-work/methodologies/waterfall-model/</a></td><td>Waterfall Model | Government Systems Technologies Inc.</td><td>31</td><td>2</td><td>0</td><td><1</td></tr><tr><td><a href=http://www.authorstream.com/Presentation/RiantSoft-1915715-list-software-development-model-methods/ target="_blank">http://www.authorstream.com/Presentation/RiantSoft-1915715-list-software-development-model-methods/</a></td><td>List of Software Development Model And Methods Ppt Presentation</td><td>42</td><td>3</td><td>0</td><td><1</td></tr><tr><td><a href=http://www.scribd.com/doc/58868815/Integrated-Database-Environment-With-a-Single-Consistent-Interface target="_blank">http://www.scribd.com/doc/58868815/Integrated-Database-Environment-With-a-Single-Consistent-Interface</a></td><td>Integrated Database Environment With a Single Consistent ...</td><td>33</td><td>2</td><td>0</td><td><1</td></tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <div id="plg-notes" class="divcenter red-text">
+                       <b> Matching Content: 10%</b>
+                    </div> 
+                <div class="main-container-bottom coner-radius">
+                    <div id="document-text" class="divcenter">
+                        <h2>Master Document Text</h2>
+                        <!--<a href="" class="matched-text"> xyz </a> -->
+                        <p> Android OS programming  Android is the fastest growing mobile operating system (OS).With over 30 smart-phones introduced in the last year<br /> and over 10,000 applications (apps) being added every month, the Android ecosystem is growing as well. </w:t></w:r><(James Steele Nelson<br /> ÿFigure 3:APPLICATION EVOLUTION (EURODROID TEAM, 2009) <br /> 
+                        young relative to iOS. The OS's numbers increased 141% from Q3 to Q4, and an incredible 3130% since January 2010. (Bradford Schmidt,<br /> operating system (OS) perspective,ÿ</w:t></w:r>http://timesofindia.indiatimes.com/topic/AndroidAndroidÿovertook Symbian to emerge as the top platform<br /> in India for the first time, with a share of 42.4% of the Smartphone market," G Rajeev, lead analyst at IDC. (Javed Anwer, 2011) Android is<br /> source mobile operating system that is based on the Linux kernel. Using Android, device manufacturers can customize the OS to suit their particular<br /> hardware design, thereby allowing them to innovate without limitations. For developers, Android </w:t></w:r>programming uses the Java programming<br /> language, and familiarity with the language immediately opens the platform to every Java programmer in the world. (Lawane Teos, 2004) <br /> Android Support with Google-Map: Android and Google Map both are initiatives of Google itself and for ease of use they    <br /> packaged libraries bundled with Android platform so use of Google-Map in android application is without compatibility issues, exceptions and  <br /> defined so that no performance issue occurs as in mobile systems performance sometime causes application to crash. </w:t></w:r><br /> ANDROID LIFECYCLE (JAMES STEELE, NELSON TO, 2010) <br /> 
+                        language enriched with features of-MultithreadingA program<a href='http://www.opensourcetutorials.com/tutorials/Server-Side-Coding/Java/multithreaded-java-app/page1.html' class="matched-text" title='http://www.opensourcetutorials.com/tutorials/Server-Side-Coding/Java/multithreaded-java-app/page1.html' target='_blank'> or process can contain multiple threads that execute instructions according to program<br /> code. Like multiple processes that can run on one computer, multiple threads appear to be doing their work in parallel. Implemented on a multi<br /> processor machine, they</a> actuallyÿcanÿwork<a href='http://www.opensourcetutorials.com/tutorials/Server-Side-Coding/Java/multithreaded-java-app/page1.html' class="matched-text" title='http://www.opensourcetutorials.com/tutorials/Server-Side-Coding/Java/multithreaded-java-app/page1.html' target='_blank'> in parallel. Unlike processes, threads share the same address space; that is, they can read and write the<br /> same variables and data structures.</a> . (IBM Team, 2006) </HandlerA Handler allows sending><a href='http://developer.android.com/reference/android/os/Handler.html' class="matched-text" title='http://developer.android.com/reference/android/os/Handler.html' target='_blank'> and processing Message and Runnable objects<br /> a thread's MessageQueue. Each Handler instance is associated with a single thread and that thread's message queue. When user creates</a> new Handler,<a href='http://developer.android.com/reference/android/os/Handler.html' class="matched-text" title='http://developer.android.com/reference/android/os/Handler.html' target='_blank'> it<br /> is bound to the thread / message queue of the thread that is creating it -- from that point on, it will deliver messages and runnables<br /> message queue and execute them as they come out of the message queue.</a> (Android Team, 2006) </Exception><a href='http://standardjava.blogspot.com/2012/02/characteristics-of-java.html' class="matched-text" title='http://standardjava.blogspot.com/2012/02/characteristics-of-java.html' target='_blank'> HandlingExceptional conditions in<br /> environments often arise in situations such as division by zero or "file not found," and they must be managed with clumsy and hard-to-read constructs<br /> Java helps in this area by providing object-oriented exception handling. (http://jakob.jenkov.com/Jakob</a> Jenkov, 2005) <br /> 
+                        details Packages to be usedPackagesUsesandroid.appandroid.app.ActivityManager.RunningServiceInfo The Activity class takes care of creating a<br /> windowÿServices run in background and they can be started and stopped by activity classes.Alert Dialog is used for message box.   android.app<br /> Activityandroid.app.ActivityManagerandroid.app.Serviceandroid.app.AlertDialog android.widgetandroid.widget.Button;For using layout object like<br /> buttons, textview.For messages Toast can be used.android.widget.EditText;android.widget.Toast; android.widget.TextView;java.iojava.io.BufferedReader<br /> For reading the data, received from ASP.NET server and subsequently for throwing errors  java.io.IOException; java.io.InputStream; java.io<br /> InputStreamReader; java.io.BufferedReader;android.osandroid.os.Bundle;For passing the data between activities and from activities to services.Binding<br /> the data with activities.android.os.Handler;android.os.IBinder;android.os.RemoteException;android.os.SystemClock;android.os.Message;android.os<br /> Messenger;android.os.SystemClock;org.json org.json.JSONArray;For converting data read by buffer-reader into readable chunks and subsequently for<br /> throwing errors org.json.JSONException; org.json.JSONObject; com.google.android.maps com.google.android.maps.GeoPoint;For storing GPS coordinates and<br /> accessing Google map view, controllers and overlay. com.google.android.maps.ItemizedOverlay; com.google.android.maps.MapActivity; com.google.android<br /> maps.MapController; com.google.android.maps.MapView; com.google.android.maps.MyLocationOverlay; com.google.android.maps.Overlay; com.google.android<br /> maps.OverlayItem;android.locationandroid.location.Location;For accessing GPS location and listening for location. android.location.LocationListener<br /> android.location.LocationManager; android.location.Criteria;org.apacheorg.apache.http.client.entity.UrlEncodedFormEntity;For receiving HTTP response<br /> and subsequently sending the data to server. org.apache.http.client.methods.HttpPost; org.apache.http.client.ClientProtocolException; org.apache.http<br /> client.HttpClient;org.apache.http.client.entity.UrlEncodedFormEntity; org.apache.http.client.methods.HttpPost; org.apache.http.impl.client<br /> DefaultHttpClient; org.apache.http.message.BasicNameValuePair;android.content android.content.ComponentName;For calling other activities from<br /> activities and services by providing necessary parameters android.content.ServiceConnection;<br /> 
+                        screen of android.android.graphics.BitmapFactory;android.graphics.Canvas;android.graphics.Point;android.graphics.drawable.Drawable;android<br /> viewandroid.view.View;For providing the actions to the layout elements like buttons.android.view.Window;java.utiljava.util.ArrayList;For various<br /> utilities like timers for updating location in regular interval.java.util.List;java.util.Timer;java.util.TimerTask;java.util.ArrayList;java.util.List<br /> java.util.Timer;java.util.TimerTask;Table 17: Packages to be usedSQLite Database is the base class for<a href='http://learn-android-by-example.blogspot.com/2013/01/android-sqlite-database-example.html' class="matched-text" title='http://learn-android-by-example.blogspot.com/2013/01/android-sqlite-database-example.html' target='_blank'> working with a SQLite database in Android and<br /> provides methods to open, query, update and close the database. More specifically</a> SQLite Database<a href='http://mobisys.in/blog/2012/01/introduction-to-android-sqlite-database/' class="matched-text" title='http://mobisys.in/blog/2012/01/introduction-to-android-sqlite-database/' target='_blank'> provides the insert (), update ()<br /> methods. The execSQL() method allows to execute directly SQL. The object</a> Content Values<a href='http://homepages.ius.edu/RWISMAN/C490/html/Android-Data-Storage.htm' class="matched-text" title='http://homepages.ius.edu/RWISMAN/C490/html/Android-Data-Storage.htm' target='_blank'> allow to define key/values for insert and update. The key is<br /> the column and the value is the value for this column.Queries can be created via the method rawQuery() which accepts SQL or query() which provides an<br /> interface for specifying dynamic data or SQLiteQueryBuilder.4.2.2</a> Methodology: Advanced WaterfallAdvanced Waterfall ModelThe Advanced<a href='http://www.hyperthot.com/pm_sdm.htm' class="matched-text" title='http://www.hyperthot.com/pm_sdm.htm' target='_blank'> waterfall<br /> provides an orderly sequence of development steps and helps ensure the adequacy of documentation and design reviews to ensure the quality<br /> reliability, and maintainability of the developed software.ÿJustification:</a> After some deliberation and discussion the developer settled upon using<br /> Waterfall Model for the development of this system. The most tempting factor for selection of Waterfall model is Figure 4:V- ModelAdvanced waterfall<br /> methodology follows V model in development stages.Advantages<a href='http://dominicbuttscomputingscience.blogspot.com/2014/05/software-development.html' class="matched-text" title='http://dominicbuttscomputingscience.blogspot.com/2014/05/software-development.html' target='_blank'> of v model Simple and easy to use.Justification: As</a> we are making an android application<br /> It is not so difficult to make the application in this methodology its will easily and proper work will done<a href='http://dominicbuttscomputingscience.blogspot.com/2014/05/software-development.html' class="matched-text" title='http://dominicbuttscomputingscience.blogspot.com/2014/05/software-development.html' target='_blank'> Testing activities like planning, test<br /> designing happens well before coding. This saves a lot of time. Hence higher chance of success over the waterfall model.Justification:</a> while making<br /> the application it will help to to make system as fast as possible in accuracy, the testing is most needed in this system. It make developer customer<br /> happy.Proactive<a href='http://dominicbuttscomputingscience.blogspot.com/2014/05/software-development.html' class="matched-text" title='http://dominicbuttscomputingscience.blogspot.com/2014/05/software-development.html' target='_blank'> defect tracking - that is defects are found at early stage.Justification:</a> In this it will help to find the defect or error in early<br /> stage while doing any testing it will knew in early stage it will solve properly.Avoids<a href='http://dominicbuttscomputingscience.blogspot.com/2014/05/software-development.html' class="matched-text" title='http://dominicbuttscomputingscience.blogspot.com/2014/05/software-development.html' target='_blank'> the downward flow of the defects.Works well for small<br /> projects where requirements are easily understood.Stable</a> project requirements: As in our project most of the user requirements are freeze at the time<br /> of PSF so it indicates a stable project requirements and Waterfall methodology completely supports a project which has requirements decided in<br /> advance.Progress of system is measurable: After each step it produces the documentation and as the structure of our Final year project we need to<br /> submit the documentation after each phase so it will be best suitable.Strict sign-off requirements: As the developers goal will be to satisfy the<br /> user and until the user will be satisfied the developer will be providing the user desired functionalities and proper features so this methodology<br /> will be best suitable.The emphasis on requirements and design before writing a single line of code ensures minimal wastage of time and effort and<br /> reduces the risk of schedule slippage, or of customer expectations not being met.In modified waterfall model life cycle phases are permitted to<br /> overlap. Because of the phases overlap, a lot of flexibility has been introduced in the modified waterfall model in<a href='http://www.buzzle.com/articles/modified-waterfall-model.html' class="matched-text" title='http://www.buzzle.com/articles/modified-waterfall-model.html' target='_blank'> software engineering. At the same<br /> time, a number of tasks can function concurrently, which ensures that the defects in the software are removed in the development stage itself and the<br /> overhead cost of making changes to the software before implementation is saved.</a><a href='http://www.buzzle.com/articles/modified-waterfall-model.html' class="matched-text" title='http://www.buzzle.com/articles/modified-waterfall-model.html' target='_blank'> Making changes to the basic design is also possible, as there are a<br /> number of phases active at one point of time. In case there are any errors introduced because of the changes made, rectifying them is also easy<br /></a> Testing can be done).<a href='http://www.buzzle.com/articles/modified-waterfall-model.html' class="matched-text" title='http://www.buzzle.com/articles/modified-waterfall-model.html' target='_blank'> This helps to reduce any oversight issues. The</a> modified waterfall model diagram<a href='http://www.buzzle.com/articles/modified-waterfall-model.html' class="matched-text" title='http://www.buzzle.com/articles/modified-waterfall-model.html' target='_blank'> does not differ from the traditional waterfall<br /> model diagram, as to every phase of the model a verification and validation step has been added.5.</a> ANALYSIS 5.1. Analysis of Questionnaire Refer<br /> appendices for analysis Conclusion: After data gathering through questionnaires and interview that developer has knew many thing it will help the<br /> developer to implement an application according the users view, some question where asked and many people give their view and some fault in daily<br /> life occur. The people demanding a tracking system should provide. Because mobile is potable can carry anywhere and easy to find. Developer go and<br /> idea what kind of the system they need in the market related to security.5.2 Interview questions and their analysis Refer to appendix for analysis<br /> Conclusion of Questionnaire and Interviews5.3 Traceability Matrix of Questionnaire and Functionality MappingRICF 1CF 2CF 3EF1EF2EF3AF 1QuestionnaireQ<br /> XQ4XQ6XQ7XQ8XInterview Q4XQ6XTable 18:Traceability Matrix of Questionnaire<br /></p>
+                        
+                        
+                    </div>
+                    
+                </div> 
+            </div>
+
+            <div id="footer">
+                <div id="footermenu">
+                    <div id="col1">
+                        <ul>
+                            <li>
+                                <a title="Plagiarism detection software" href="http://www.scanmyessay.com/plagiarism-detection-software.php">Plagiarism Detection Software</a>
+                            </li>
+                            <li>
+                                <a title=" Plagiarism Test" href="http://www.scanmyessay.com/plagiarism-test.php">Plagiarism Test </a>
+                            </li>
+                            <li>
+                                <a title="Plagiarism Detector" href="http://www.scanmyessay.com/plagiarism-detector.php">Plagiarism Detector</a>
+                            </li>
+                            <li>
+                                <a title="Detect Plagiarism" href="http://www.scanmyessay.com/detect-plagiarism.php">Detect Plagiarism</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="col2">
+                        <ul>
+                            <li>
+                                <a title="Essay Checker" href="http://www.scanmyessay.com/essay-checker.php">Essay Checker</a> 
+                                | <a href="http://www.scanmyessay.com/free-check-for-plagiarism.php">Free Check for Plagiarism</a>
+                            </li>
+                            <li>
+                                <a title="Free lesson plans" href="http://www.scanmyessay.com/lesson-plans.php">Lesson plans</a>
+                            </li>
+                            <li>
+                                <a title="Avoid plagiarism" href="http://www.scanmyessay.com/avoid-plagiarism.php">Avoid Plagiarism</a>
+                            </li>
+                            <li>
+                                <a title="Plagiarism Check" href="http://www.scanmyessay.com/plagiarism-check.php">Plagiarism Check</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="col3">
+                        <ul>
+                            <li>
+                                <a title="Plagiarism prevention software" href="http://www.scanmyessay.com/plagiarism-prevention.php">Plagiarism Prevention</a>
+                            </li>
+                            <li>
+                                <a title="Turnitin" href="http://www.scanmyessay.com/turnitin.php">Turnitin </a> | <a href="http://www.scanmyessay.com/check-for-plagiarism-free.php">Check for Plagiarism Free</a>
+                            </li>
+                            <li>
+                                <a title="Editing services" href="http://www.scanmyessay.com/essay-marking/index.php">Editing Services</a>
+                            </li>
+                            <li>
+                                <a title="Free Scanner Software" href="http://www.essaycoursework.com/coursework-writing.php">Coursework writing</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="footerbottom">
+                    <p>
+                        Copyright © 2012 All Rights Reserved. 
+                        <a href="http://www.scanmyessay.com">Scan My Essay</a> 
+                        - Free Plagiarism Scanner, Checker and Detection Tool.  
+                        Viper and ScanMyEssay.com are trading names of Angel Business Limited, 
+                        a Company registered in England and Wales with Company Registration No: 07344835, 
+                        The Loft, 3 Plumptre Street, The Lace Market, Nottingham NG1 1JL | 
+                        <a href="http://www.scanmyessay.com/viper-keygen-crack.php">Warning - Viper Keygen / Viper Crack</a>
+                    </p>
+                    <p>
+                        Please note that by using ScanMyEssay.com, VIPER and any other  software or resources on the ScanMyEssay Website, you are signifying  your agreement
+                        to our <a href="http://www.scanmyessay.com/terms.php">terms and conditions</a>, and our <a href="http://www.scanmyessay.com/privacy-policy.php">privacy policy</a> | <a href="http://www.scanmyessay.com/sitemap.xml">XML sitemap</a> 
+                        | <a href="http://www.scanmyessay.com/ror.xml">ROR</a> 
+                        | <a href="http://www.scanmyessay.com/urllist.txt">TXT</a>
+                        | <a href="http://www.scanmyessay.com/sitemap.html">HTML</a>
+                        | <a href="http://www.scanmyessay.com/sitemap.php">PHP</a> | <a href="http://cn.scanmyessay.com">剽窃检查</a>
+                        | <a href="http://es.scanmyessay.com">Verificador de plagio gratuito</a> 
+                        | <a href="http://fr.scanmyessay.com/">Détecteur de plagiat gratuit</a> 
+                        | <a href="http://in.scanmyessay.com/">Viper साहित्यिक चोरी जांचने का एक निशुल्क साधन...</a>
+
+                    </p>
+                </div> 
+            </div>
+
+        </div>
+         
+    </body>
+</html>
